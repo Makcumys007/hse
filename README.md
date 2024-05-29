@@ -17,3 +17,5 @@ Commits
 29/05/2024 14:58 url_for - added
 
 29/05/2024 15:10 def profile - added
+
+29/05/2024 15:12 def profile path/float/int - added

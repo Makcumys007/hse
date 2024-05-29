@@ -15,7 +15,7 @@ def about():
     print( url_for('about') )
     return render_template('index.html')
 
-@app.route("/profile/<username>")
+@app.route("/profile/<path:username>")
 def profile(username):
     return f"User: {username}"
 
