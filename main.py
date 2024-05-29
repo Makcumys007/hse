@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
 
@@ -23,10 +23,16 @@ def about():
 def profile(username):
     return f"User: {username}"
 
+@app.route("/contact", methods=["POST", "GET"])
+def contact():
+    if request.method == 'POST':
+        print(request.form)
+    return render_template('contact.html', title="Contacts", menu=menu)
+
 @app.route("/hse/<int:board>")
 def hse_board(board):
     if board == 2:
-        return render_template('board.html', title="KAZ MINERALS BOZSHAKOL LLC")
+        return render_template('kpp.html', title="KAZ MINERALS BOZSHAKOL LLC")
     else:
         return f"Return index: {board}"
 
