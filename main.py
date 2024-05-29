@@ -21,7 +21,10 @@ def profile(username):
 
 @app.route("/hse/<int:board>")
 def hse_board(board):
-    return f"Board: {board}"
+    if board == 2:
+        return render_template('board.html', title="KAZ MINERALS BOZSHAKOL LLC")
+    else:
+        return f"Return index: {board}"
 
 
 """ with app.test_request_context():
