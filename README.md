@@ -11,3 +11,5 @@ pip -m install flask
 29/05/2024 11:41 Bootstrap, templates, index.html
 
 29/05/2024 11:54 title, menu - added
+
+29/05/2024 14:58 url_for - added
