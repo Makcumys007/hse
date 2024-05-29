@@ -26,7 +26,7 @@ def profile(username):
 @app.route("/contact", methods=["POST", "GET"])
 def contact():
     if request.method == 'POST':
-        print(request.form)
+        print( request.form )
     return render_template('contact.html', title="Contacts", menu=menu)
 
 @app.route("/hse/<int:board>")
