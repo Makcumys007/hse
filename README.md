@@ -19,3 +19,5 @@ Commits
 29/05/2024 15:10 def profile - added
 
 29/05/2024 15:12 def profile path/float/int - added
+
+29/05/2024 15:15 def hse_board - added

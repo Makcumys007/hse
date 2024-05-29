@@ -19,6 +19,11 @@ def about():
 def profile(username):
     return f"User: {username}"
 
+@app.route("/hse/<int:board>")
+def hse_board(board):
+    return f"Board: {board}"
+
+
 """ with app.test_request_context():
     print( url_for('about') ) """
 
