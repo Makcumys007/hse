@@ -35,3 +35,5 @@ Commits
 30/05/2024 16:24 login, profile, sessions - added
 
 30/05/2024 17:19 main_db - created
+
+30/05/2024 17:20 connected_db - added
