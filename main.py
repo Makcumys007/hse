@@ -1,4 +1,12 @@
 from flask import Flask, render_template, url_for, request, flash, session, redirect, abort
+import datetime
+
+# Получаем текущую дату и время
+now = datetime.datetime.now()
+
+# Форматируем дату в желаемый формат
+today = now.strftime("%d.%m.%y")
+
 
 app = Flask(__name__)
 
@@ -39,10 +47,10 @@ def contact():
 @app.route("/hse/<int:board>")
 def hse_board(board):
     if board == 2:
-        return render_template('kpp.html', title="KAZ MINERALS BOZSHAKOL LLC")
+        return render_template('kpp.html', title="KAZ MINERALS BOZSHAKOL LLC", date=today)
     else:
         return f"Return index: {board}"
-    
+
 @app.route("/login", methods=["POST", "GET"])
 def login():
     
