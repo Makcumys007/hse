@@ -47,3 +47,5 @@ Commits
 31/05/2024 13:06 errors were fixed
 
 31/05/2024 16:02 table posts - created
+
+31/05/2024 16:13 def addPost - created

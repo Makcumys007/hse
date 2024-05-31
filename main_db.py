@@ -37,6 +37,23 @@ def index():
     dbase = FDataBase(db)
     return render_template('index.html', menu = dbase.getMenu())
 
+
+@app.route("/add_post", method=["POST", "GET"])
+def addPost():
+    db = get_db()
+    dbase = FDataBase(db)
+    if request.method == "POST":
+        if len(request.form['name']) > 4 and len(request.form['post']) > 10:
+            res = dbase.addPost(request.form['name'], request.form['post'])
+            if not res:
+                flash('Error of adding post', category = 'error')
+            else:
+                flash('Post added successfully', category = 'error')
+        else:
+            flash('Error of adding post', category = 'error')
+
+    return render_template('add_post.html', menu= dbase.getMenu(), title='Add Post')
+
 @app.teardown_appcontext
 def close_db(error):
     if hasattr(g, 'link_db'):
