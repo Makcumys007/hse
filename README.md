@@ -42,4 +42,6 @@ Commits
 
 30/05/2024 17:33 flsite.db - created
 
-31/05/2024 14:46 FDataBase, main_db - created
+31/05/2024 12:46 FDataBase, main_db - created
+
+31/05/2024 13:06 errors were fixed

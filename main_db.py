@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 from flask import Flask, render_template, request, g
-
+from FDataBase import FDataBase
 
 DATABASE = '/tmp/flsite.db'
 DEBUG = True
@@ -28,13 +28,13 @@ def create_db():
 def get_db():
     if not hasattr(g, 'link_db'):
         g.link_db = connect_db()
-    return g.limk_db
+    return g.link_db
 
 
 @app.route("/")
 def index():
     db = get_db()
-    dbase - FDataBase(db)
+    dbase = FDataBase(db)
     return render_template('index.html', menu = dbase.getMenu())
 
 @app.teardown_appcontext

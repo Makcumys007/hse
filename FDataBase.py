@@ -1,5 +1,5 @@
 class FDataBase:
-    def __init__(self, db) -> None:
+    def __init__(self, db):
         self.__db = db
         self.__cur = db.cursor()
 
@@ -11,5 +11,4 @@ class FDataBase:
             if res: return res
         except:
             print("Error reading DB")
-
         return []

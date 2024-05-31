@@ -14,10 +14,10 @@ app.config['SECRET_KEY'] = 'Wwhym5602UvC@Zw.YU1A2gtkoD2rQgGNu_51WT-%Q.=]v>6@66A!
 
 
 menu = [
-    {"name": "Index", "url": "/"},
-    {"name": "HSE Board", "url": "hse/1"},
-    {"name": "KPP Board", "url": "hse/2"},
-    {"name": "Contacts", "url": "contact"},
+    {"title": "Index", "url": "/"},
+    {"title": "HSE Board", "url": "hse/1"},
+    {"title": "KPP Board", "url": "hse/2"},
+    {"title": "Contacts", "url": "contact"},
 ]
 
 
