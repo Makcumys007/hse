@@ -45,3 +45,5 @@ Commits
 31/05/2024 12:46 FDataBase, main_db - created
 
 31/05/2024 13:06 errors were fixed
+
+31/05/2024 16:02 table posts - created
