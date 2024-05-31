@@ -12,3 +12,14 @@ class FDataBase:
         except:
             print("Error reading DB")
         return []
+
+    def addPost(self, title, text):
+        try:
+            tm = math.floor(time.time())
+            self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?)", (title, text, tm))
+            self.__db.commit()
+        except sqlite3.Error as e:
+            print(f"Error adding post to DB {e}")
+            return False
+
+        return True

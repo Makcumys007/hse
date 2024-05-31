@@ -38,7 +38,7 @@ def index():
     return render_template('index.html', menu = dbase.getMenu())
 
 
-@app.route("/add_post", method=["POST", "GET"])
+@app.route("/add_post", methods=["POST", "GET"])
 def addPost():
     db = get_db()
     dbase = FDataBase(db)

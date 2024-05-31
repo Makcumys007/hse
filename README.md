@@ -49,3 +49,6 @@ Commits
 31/05/2024 16:02 table posts - created
 
 31/05/2024 16:13 def addPost - created
+
+31/05/2024 18:50 def addPost for DB - created
+
