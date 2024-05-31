@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, g
 
 
 DATABASE = '/tmp/flsite.db'
@@ -25,6 +25,22 @@ def create_db():
     db.commit()
     db.close()
 
+def get_db():
+    if not hasattr(g, 'link_db'):
+        g.link_db = connect_db()
+    return g.limk_db
+
+
+@app.route("/")
+def index():
+    db = get_db()
+    dbase - FDataBase(db)
+    return render_template('index.html', menu = dbase.getMenu())
+
+@app.teardown_appcontext
+def close_db(error):
+    if hasattr(g, 'link_db'):
+        g.link_db.close()
 
 if __name__ == "__main__":
     app.run(debug=True)
