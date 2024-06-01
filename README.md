@@ -67,3 +67,5 @@ Commits
 01/06/2024 15:22 before/after decorators were added
 
 01/06/2024 17:31 def login/logout were added
+
+01/06/2024 18:08 work with sessions

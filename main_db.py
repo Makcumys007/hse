@@ -1,8 +1,8 @@
 import sqlite3
 import os
+import datetime
 
-
-from flask import Flask, render_template, request, g, flash, abort, make_response
+from flask import Flask, render_template, request, g, flash, abort, make_response, session
 from FDataBase import FDataBase
 
 DATABASE = '/tmp/flsite.db'
@@ -11,7 +11,9 @@ SECRET_KEY  = 'P71,0:Td=v?Y>ft)M2v*!VhYYCQFR_EsAK4^tMDg@^-H#4b?>gCH+}.y@BogR?cz1
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-
+app.config['SECRET_KEY'] = SECRET_KEY
+# Хранить сессию 10 дней
+app.permanent_session_lifetime = datetime.timedelta(days=10)
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))
 
 def connect_db():
@@ -52,7 +54,12 @@ def logout():
 def index():
     db = get_db()
     dbase = FDataBase(db)
- 
+    
+    if 'visits' in session:
+        session['visits'] = session.get('visits') + 1 # Обновление данных сессии
+    else:
+        session['visits'] = 1
+    print(f"Число просмотров: {session['visits']}")
 
     content = render_template('index.html', menu = dbase.getMenu(), posts=dbase.getPostsAnonce())
     res = make_response(content)
@@ -96,8 +103,18 @@ def close_db(error):
 def pageNot(error):
     return ("Page not found!", 404)
 
+#####################################
 
-
+data = [1,2,3,4]
+@app.route("/session")
+def session_data():
+    session.permanent = True
+    if 'data' not in session:
+        session['data'] = data
+    else:
+        session['data'][1] += 1
+        session.modified = True
+    return f"<p>session['data']: {session['data']}</p>"
 @app.before_request
 def before_request():
     print("before_request() called")
