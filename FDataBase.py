@@ -1,6 +1,8 @@
 import time
 import math
 import sqlite3
+import re
+from flask import url_for
 class FDataBase:
     def __init__(self, db):
         self.__db = db
@@ -38,7 +40,10 @@ class FDataBase:
         try:
             self.__cur.execute(f"SELECT title, text FROM posts WHERE url LIKE '{alias}' LIMIT 1")
             res = self.__cur.fetchone()
-            if res: return res
+            if res:
+                base = url_for('static', filename='res/img')
+
+                return res
         except sqlite3.Error as e:
             print(f"Error getting post from DB {e}")
            

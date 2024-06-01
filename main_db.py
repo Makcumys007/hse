@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 
-from flask import Flask, render_template, request, g, flash, abort
+from flask import Flask, render_template, request, g, flash, abort, make_response
 from FDataBase import FDataBase
 
 DATABASE = '/tmp/flsite.db'
@@ -36,7 +36,12 @@ def get_db():
 def index():
     db = get_db()
     dbase = FDataBase(db)
-    return render_template('index.html', menu = dbase.getMenu(), posts=dbase.getPostsAnonce())
+ 
+
+    content = render_template('index.html', menu = dbase.getMenu(), posts=dbase.getPostsAnonce())
+    res = make_response(content)
+    res.headers['Server'] = 'hse'
+    return res
 
 
 @app.route("/add_post", methods=["POST", "GET"])
@@ -70,6 +75,10 @@ def showPost(alias):
 def close_db(error):
     if hasattr(g, 'link_db'):
         g.link_db.close()
+
+@app.errorhandler(404)
+def pageNot(error):
+    return ("Page not found!", 404)
 
 if __name__ == "__main__":
     app.run(debug=True)
