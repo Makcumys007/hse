@@ -15,10 +15,16 @@ class FDataBase:
             print("Error reading DB")
         return []
 
-    def addPost(self, title, text):
+    def addPost(self, title, text, url):
         try:
+            self.__cur.execute(f"SELECT COUNT() as `count` FROM posts WHERE url LIKE '{url}'")
+            res = self.__cur,fetchone()
+            if res['count'] > 0:
+                print("Post with URL like that is exist!")
+                return False
+
             tm = math.floor(time.time())
-            self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?)", (title, text, tm))
+            self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?, ?)", (title, text, url, tm))
             self.__db.commit()
         except sqlite3.Error as e:
             print(f"Error adding post to DB {e}")

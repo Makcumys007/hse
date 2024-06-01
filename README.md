@@ -57,3 +57,5 @@ Commits
 01/06/2024 07:32 def showPost - added
 
 01/06/2024 09:15 def getPost, getPostsAnonce - were added
+
+01/06/2024 12:23 def addPost - modified
