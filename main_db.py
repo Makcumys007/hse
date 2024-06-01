@@ -57,6 +57,15 @@ def addPost():
 
     return render_template('add_post.html', menu= dbase.getMenu(), title='Add Post')
 
+@app.route("/post/<int:id_post>")
+def showPost(id_post):
+    db = get_db()
+    dbase = FDataBase(db)
+    title, post = dbase.getPost(id_post)
+    if not title:
+        abort(404)
+    return render_template('post.html', menu=dbase.getMenu(), title=title, post=post)
+
 @app.teardown_appcontext
 def close_db(error):
     if hasattr(g, 'link_db'):
