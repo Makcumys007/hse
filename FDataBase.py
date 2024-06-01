@@ -1,3 +1,5 @@
+import time
+import math
 class FDataBase:
     def __init__(self, db):
         self.__db = db

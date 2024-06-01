@@ -1,7 +1,8 @@
 import sqlite3
 import os
 
-from flask import Flask, render_template, request, g
+
+from flask import Flask, render_template, request, g, flash
 from FDataBase import FDataBase
 
 DATABASE = '/tmp/flsite.db'
@@ -42,15 +43,17 @@ def index():
 def addPost():
     db = get_db()
     dbase = FDataBase(db)
+
+
     if request.method == "POST":
         if len(request.form['name']) > 4 and len(request.form['post']) > 10:
             res = dbase.addPost(request.form['name'], request.form['post'])
             if not res:
-                flash('Error of adding post', category = 'error')
+                flash('Error of adding post', category = 'dnager')
             else:
-                flash('Post added successfully', category = 'error')
+                flash('Post added successfully', category = 'success')
         else:
-            flash('Error of adding post', category = 'error')
+            flash('Error of adding post', category = 'danger')
 
     return render_template('add_post.html', menu= dbase.getMenu(), title='Add Post')
 

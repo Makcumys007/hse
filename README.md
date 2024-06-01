@@ -52,3 +52,4 @@ Commits
 
 31/05/2024 18:50 def addPost for DB - created
 
+01/06/2024 07:25 errors with sql3lite were fixed
