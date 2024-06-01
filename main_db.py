@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 
-from flask import Flask, render_template, request, g, flash
+from flask import Flask, render_template, request, g, flash, abort
 from FDataBase import FDataBase
 
 DATABASE = '/tmp/flsite.db'
@@ -57,11 +57,11 @@ def addPost():
 
     return render_template('add_post.html', menu= dbase.getMenu(), title='Add Post')
 
-@app.route("/post/<int:id_post>")
-def showPost(id_post):
+@app.route("/post/<alias>")
+def showPost(alias):
     db = get_db()
     dbase = FDataBase(db)
-    title, post = dbase.getPost(id_post)
+    title, post = dbase.getPost(alias)
     if not title:
         abort(404)
     return render_template('post.html', menu=dbase.getMenu(), title=title, post=post)
