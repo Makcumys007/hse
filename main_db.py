@@ -31,6 +31,22 @@ def get_db():
         g.link_db = connect_db()
     return g.link_db
 
+@app.route("/login")
+def login():
+    log = ""   
+
+    if request.cookies.get('logged'):
+        log = request.cookies.get('logged')
+
+    res = make_response(f"<h1>User authorised</h1><p>logged: {log}</p>")
+    res.set_cookie("logged", "yes", 30*24*3600)
+    return res
+
+@app.route("/logout")
+def logout():
+    res = make_response(f"<h1>You are not authorised anymore!</p>")
+    res.set_cookie("logged", "", 0)
+    return res
 
 @app.route("/")
 def index():
@@ -80,9 +96,7 @@ def close_db(error):
 def pageNot(error):
     return ("Page not found!", 404)
 
-@app.before_first_request
-def before_first_request():
-    print("before_first_request() called")
+
 
 @app.before_request
 def before_request():
