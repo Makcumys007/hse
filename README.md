@@ -13,3 +13,5 @@ HSE BOARD KBL
 02/06/2024 15:35 DB created
 
 02/06/2024 16:20 python manage.py startapp kppboard
+
+02/06/2024 18:12 BoardData created
