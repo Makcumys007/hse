@@ -11,3 +11,5 @@ HSE BOARD KBL
 02/06/2024 15:00 requirements.txt were loaded
 
 02/06/2024 15:35 DB created
+
+02/06/2024 15:39 python hse/manage.py startapp kpp-board
