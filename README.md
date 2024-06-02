@@ -69,3 +69,5 @@ Commits
 01/06/2024 17:31 def login/logout were added
 
 01/06/2024 18:08 work with sessions
+
+02/06/2024 10:14 DB conncection were added to before_request 

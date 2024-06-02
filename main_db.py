@@ -16,6 +16,8 @@ app.config['SECRET_KEY'] = SECRET_KEY
 app.permanent_session_lifetime = datetime.timedelta(days=10)
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))
 
+dbase = None
+
 def connect_db():
     conn = sqlite3.connect(app.config['DATABASE'])
     conn.row_factory = sqlite3.Row
@@ -52,8 +54,7 @@ def logout():
 
 @app.route("/")
 def index():
-    db = get_db()
-    dbase = FDataBase(db)
+    #
     
     if 'visits' in session:
         session['visits'] = session.get('visits') + 1 # Обновление данных сессии
@@ -69,8 +70,7 @@ def index():
 
 @app.route("/add_post", methods=["POST", "GET"])
 def addPost():
-    db = get_db()
-    dbase = FDataBase(db)
+    #
 
 
     if request.method == "POST":
@@ -87,8 +87,7 @@ def addPost():
 
 @app.route("/post/<alias>")
 def showPost(alias):
-    db = get_db()
-    dbase = FDataBase(db)
+    #
     title, post = dbase.getPost(alias)
     if not title:
         abort(404)
@@ -115,9 +114,13 @@ def session_data():
         session['data'][1] += 1
         session.modified = True
     return f"<p>session['data']: {session['data']}</p>"
+
 @app.before_request
 def before_request():
-    print("before_request() called")
+    print("___---===Connection with Database===---___")
+    global dbase
+    db = get_db()
+    dbase = FDataBase(db)
 
 @app.after_request
 def after_request(response):
