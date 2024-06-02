@@ -64,7 +64,21 @@ class FDataBase:
             print(f"Error getting user from DB {e}")        
 
         return False
+    
+    def getUserByEmail(self, email):
+      
+        try:
+            self.__cur.execute(f"SELECT * FROM users WHERE email = '{email}' LIMIT 1")
+            res = self.__cur.fetchone()
+            if not res:
+                print("User not found!")
+                return False
+            return res
+        except sqlite3.Error as e:
+            print(f"Error getting user from DB {e}")        
 
+        return False
+    
     def getPost(self, alias):
       
         try:

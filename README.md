@@ -85,3 +85,5 @@ Commits
 02/06/2024 12:48 def def getUser - created
 
 02/06/2024 12:51 @login_manager.user_loader -added
+
+02/06/2024 13:01 def login  - updated

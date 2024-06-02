@@ -4,7 +4,7 @@ import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, g, flash, abort, make_response, session, redirect, url_for
 from FDataBase import FDataBase
-from flask_login import LoginManager
+from flask_login import LoginManager, login_user, login_required
 import UserLogin
 
 DATABASE = '/tmp/flsite.db'
@@ -45,8 +45,17 @@ def get_db():
         g.link_db = connect_db()
     return g.link_db
 
-@app.route("/login")
+@app.route("/login", methods=["POST", "GET"])
 def login():    
+    if request.method == "POST":
+        user = dbase.getUserByEmail(request.form['email'])
+        if user and check_password_hash(user['psw'], request.form['psw']):
+            userlogin = UserLogin().create(user)
+            login_user(userlogin)
+            return redirect(url_for('index'))
+        
+        flash("Password is incorrect", "danger")
+
     return render_template('login.html', menu=dbase.getMenu(), title='Login')
 
 @app.route("/register", methods=["POST", "GET"])
@@ -72,7 +81,6 @@ def logout():
 
 @app.route("/")
 def index():
-    #
     
     if 'visits' in session:
         session['visits'] = session.get('visits') + 1 # Обновление данных сессии
@@ -88,9 +96,7 @@ def index():
 
 @app.route("/add_post", methods=["POST", "GET"])
 def addPost():
-    #
-
-
+    
     if request.method == "POST":
         if len(request.form['name']) > 4 and len(request.form['post']) > 10:
             res = dbase.addPost(request.form['name'], request.form['post'], request.form['url'])
@@ -104,8 +110,9 @@ def addPost():
     return render_template('add_post.html', menu= dbase.getMenu(), title='Add Post')
 
 @app.route("/post/<alias>")
+@login_required
 def showPost(alias):
-    #
+  
     title, post = dbase.getPost(alias)
     if not title:
         abort(404)
