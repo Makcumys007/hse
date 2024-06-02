@@ -1,3 +1,4 @@
 Django
 Pillow
-mssql-django
+mysql-connector-python
+mysqlclient
