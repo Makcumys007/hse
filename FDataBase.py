@@ -34,6 +34,22 @@ class FDataBase:
             return False
 
         return True
+    
+    def addUser(self, name, email, hpsw):
+        try:
+            self.__cur.execute(f"SELECT COUNT() as `count` FROM users WHERE email LIKE '{email}'")
+            res = self.__cur.fetchone()
+            if res['count'] > 0:
+                print("User with that email exist!")
+                return False
+            tm = math.floor(time.time())
+            self.__cur.execute("INSERT INTO users VALUES(NULL, ?,?,?,?)", (name, email, hpsw, tm))
+            self.__db.commit()
+        except sqlite3.Error as e:
+            print(f"Error adding user to DB {e}")
+            return False
+
+        return True
 
     def getPost(self, alias):
       

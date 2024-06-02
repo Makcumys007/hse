@@ -73,3 +73,5 @@ Commits
 02/06/2024 10:14 DB conncection were added to before_request 
 
 02/06/2024 10:52 def register - added 
+
+02/06/2024 12:06 def addUser - added

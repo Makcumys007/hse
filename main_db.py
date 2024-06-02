@@ -2,7 +2,7 @@ import sqlite3
 import os
 import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import Flask, render_template, request, g, flash, abort, make_response, session
+from flask import Flask, render_template, request, g, flash, abort, make_response, session, redirect, url_for
 from FDataBase import FDataBase
 
 DATABASE = '/tmp/flsite.db'
@@ -47,6 +47,7 @@ def register():
             res = dbase.addUser(request.form['name'], request.form['email'], hash)
             if res:
                 flash("You have been registered successfuly", "success")
+                return redirect(url_for('login'))
             else:
                 flash("Error of adding USER to DB", "danger")
         else:
