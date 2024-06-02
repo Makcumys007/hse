@@ -5,10 +5,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, g, flash, abort, make_response, session, redirect, url_for
 from FDataBase import FDataBase
 from flask_login import LoginManager
+import UserLogin
 
 DATABASE = '/tmp/flsite.db'
 DEBUG = True
 SECRET_KEY  = 'P71,0:Td=v?Y>ft)M2v*!VhYYCQFR_EsAK4^tMDg@^-H#4b?>gCH+}.y@BogR?cz1+>!wxAMd!>vTu.eKhDY-7tN>R3h^4LT>mQa'
+dbase = None
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -16,11 +18,15 @@ app.config['SECRET_KEY'] = SECRET_KEY
 # Хранить сессию 10 дней
 app.permanent_session_lifetime = datetime.timedelta(days=10)
 
-login_manager = LoginManager(app)
-
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))
 
-dbase = None
+login_manager = LoginManager(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    print("load_user")
+    return UserLogin().fromDB(user_id, dbase)
+
 
 def connect_db():
     conn = sqlite3.connect(app.config['DATABASE'])
