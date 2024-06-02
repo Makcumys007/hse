@@ -1,7 +1,7 @@
 import sqlite3
 import os
 import datetime
-
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, g, flash, abort, make_response, session
 from FDataBase import FDataBase
 
@@ -36,15 +36,22 @@ def get_db():
     return g.link_db
 
 @app.route("/login")
-def login():
-    log = ""   
+def login():    
+    return render_template('login.html', menu=dbase.getMenu(), title='Login')
 
-    if request.cookies.get('logged'):
-        log = request.cookies.get('logged')
-
-    res = make_response(f"<h1>User authorised</h1><p>logged: {log}</p>")
-    res.set_cookie("logged", "yes", 30*24*3600)
-    return res
+@app.route("/register", methods=["POST", "GET"])
+def register():    
+    if request.method == "POST":
+        if len(request.form['name']) > 4 and len(request.form['email']) > 4 and len(request.form['psw']) > 4 and request.form['psw'] == request.form['psw2']:
+            hash = generate_password_hash(request.form['psw'])
+            res = dbase.addUser(request.form['name'], request.form['email'], hash)
+            if res:
+                flash("You have been registered successfuly", "success")
+            else:
+                flash("Error of adding USER to DB", "danger")
+        else:
+            flash("Bad input in fields", "danger")
+    return render_template('register.html', menu=dbase.getMenu(), title='Registration')
 
 @app.route("/logout")
 def logout():
