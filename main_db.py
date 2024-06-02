@@ -4,6 +4,7 @@ import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, g, flash, abort, make_response, session, redirect, url_for
 from FDataBase import FDataBase
+from flask_login import LoginManager
 
 DATABASE = '/tmp/flsite.db'
 DEBUG = True
@@ -14,6 +15,9 @@ app.config.from_object(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 # Хранить сессию 10 дней
 app.permanent_session_lifetime = datetime.timedelta(days=10)
+
+login_manager = LoginManager(app)
+
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))
 
 dbase = None

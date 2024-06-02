@@ -2,7 +2,9 @@ Preparations
 
 python -m venv venv
 
-pip -m install flask
+pip install flask
+
+pip install flask-login
 
 Commits
 
@@ -75,3 +77,5 @@ Commits
 02/06/2024 10:52 def register - added 
 
 02/06/2024 12:06 def addUser - added
+
+02/06/2024 12:37 class UserLogin - created
