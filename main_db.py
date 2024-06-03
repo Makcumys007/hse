@@ -6,6 +6,7 @@ from flask import Flask, render_template, request, g, flash, abort, make_respons
 from FDataBase import FDataBase
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from UserLogin import UserLogin
+from forms import LoginForm
 
 DATABASE = '/tmp/flsite.db'
 DEBUG = True
@@ -53,17 +54,29 @@ def get_db():
 def login():    
     if current_user.is_authenticated:
         return redirect(url_for('profile'))
-    if request.method == "POST":
-        user = dbase.getUserByEmail(request.form['email'])
-        if user and check_password_hash(user['psw'], request.form['psw']):
+    # if request.method == "POST":
+    #     user = dbase.getUserByEmail(request.form['email'])
+    #     if user and check_password_hash(user['psw'], request.form['psw']):
+    #         userlogin = UserLogin().create(user)
+    #         rm = True if request.form.get('remainme') else False            
+    #         login_user(userlogin, remember=rm)
+    #         return redirect(request.args.get('next') or url_for('index'))
+        
+    #     flash("Password is incorrect", "danger")
+
+    # return render_template('login.html', menu=dbase.getMenu(), title='Login')
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = dbase.getUserByEmail(form.email.data)
+        if user and check_password_hash(user['psw'], form.psw.data):
             userlogin = UserLogin().create(user)
-            rm = True if request.form.get('remainme') else False            
+            rm = form.remember.data          
             login_user(userlogin, remember=rm)
             return redirect(request.args.get('next') or url_for('index'))
         
         flash("Password is incorrect", "danger")
-
-    return render_template('login.html', menu=dbase.getMenu(), title='Login')
+        
+    return render_template('login.html', menu=dbase.getMenu(), title='Login', form=form)
 
 @app.route("/register", methods=["POST", "GET"])
 def register():    
