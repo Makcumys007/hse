@@ -101,3 +101,5 @@ Commits
 03/06/2024 12:11 login_view - added
 
 03/06/2024 12:16 current_user.is_authenticated - added
+
+03/06/2024 12:21 from flask_login import UserMixin - added

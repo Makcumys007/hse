@@ -58,7 +58,7 @@ def login():
             userlogin = UserLogin().create(user)
             rm = True if request.form.get('remainme') else False            
             login_user(userlogin, remember=rm)
-            return redirect(url_for('index'))
+            return redirect(request.args.get('next') or url_for('index'))
         
         flash("Password is incorrect", "danger")
 
