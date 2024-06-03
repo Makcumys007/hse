@@ -15,3 +15,5 @@ HSE BOARD KBL
 02/06/2024 16:20 python manage.py startapp kppboard
 
 02/06/2024 18:12 BoardData created
+
+python manage.py migrate --run-syncdb 
