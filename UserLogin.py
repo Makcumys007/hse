@@ -1,6 +1,7 @@
 from flask_login import UserMixin
+from flask import Flask, render_template, request, g, flash, abort, make_response, session, redirect, url_for
 
-class UserLogin():
+class UserLogin(UserMixin):
     def fromDB(self, user_id, db):
         self.__user = db.getUser(user_id)
         return self
@@ -11,3 +12,21 @@ class UserLogin():
     
     def get_id(self):
         return str(self.__user['id'])
+    
+    def getName(self):
+        return self.__user['name'] if self.__user else "Noname"
+    
+    def getEmail(self):
+        return self.__user['email'] if self.__user else "Nomail"
+    
+    def getAvatar(self, app):
+        img = None
+        if not self.__user['avatar']:
+            try:
+                 with app.open_resource(app.root_path + url_for('static', filename='images/default.png'), 'r') as f:
+                     img = f.read()
+            except FileNotFoundError as e:
+                print(f"File not found: {e}")
+        else:
+            img = self.__user['avatar']
+        return img

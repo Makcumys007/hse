@@ -43,7 +43,7 @@ class FDataBase:
                 print("User with that email exist!")
                 return False
             tm = math.floor(time.time())
-            self.__cur.execute("INSERT INTO users VALUES(NULL, ?,?,?,?)", (name, email, hpsw, tm))
+            self.__cur.execute("INSERT INTO users VALUES(NULL, ?,?,?, NULL, ?)", (name, email, hpsw, tm))
             self.__db.commit()
         except sqlite3.Error as e:
             print(f"Error adding user to DB {e}")

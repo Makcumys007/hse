@@ -10,6 +10,7 @@ from UserLogin import UserLogin
 DATABASE = '/tmp/flsite.db'
 DEBUG = True
 SECRET_KEY  = 'P71,0:Td=v?Y>ft)M2v*!VhYYCQFR_EsAK4^tMDg@^-H#4b?>gCH+}.y@BogR?cz1+>!wxAMd!>vTu.eKhDY-7tN>R3h^4LT>mQa'
+MAX_CONTENT_LENGTH = 1024 * 1024
 dbase = None
 
 app = Flask(__name__)
@@ -126,10 +127,17 @@ def showPost(alias):
 @app.route('/profile')
 @login_required
 def profile():
-    return f"""
-        <p><a href="{url_for('logout')}">Logout</a></p>
-<p>User info: {current_user.get_id()}</p>
-    """
+    return render_template('profile.html', menu=dbase.getMenu(), title='Profile')
+
+@app.route('/userava')
+@login_required
+def userava():
+    img = current_user.getAvatar(app)
+    if not img:
+        return ""
+    header = make_response(img)
+    header.headers['Content-Type'] = 'image/png'
+    return header
 
 @app.errorhandler(404)
 def pageNot(error):
