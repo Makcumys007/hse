@@ -29,11 +29,29 @@
     {{ form.hidden_tag() }}
     <div class="form-group">
       {{ form.email.label() }}
-      {{ form.email(class_="form-control")}}
+      {% if form.email.errors %}
+        {{ form.email(class_="form-control border border-danger") }}
+        <span class="text-danger">
+          {% for e in form.email.errors %}
+            {{ e }}
+          {% endfor %}
+          </span>
+      {% else %}
+        {{ form.email(class_="form-control")}}
+      {% endif %}
     </div>
     <div class="form-group">
       {{ form.psw.label() }}
-      {{ form.psw(class_="form-control")}}
+      {% if form.psw.errors %}
+        {{ form.psw(class_="form-control border border-danger") }}
+        <span class="text-danger">
+          {% for e in form.psw.errors %}
+            {{ e }}
+          {% endfor %}
+          </span>
+      {% else %}
+        {{ form.psw(class_="form-control")}}
+      {% endif %}
     </div>
     <div class="form-check">      
       {{ form.remember(class_="form-check-input")}}

@@ -111,3 +111,5 @@ Commits
 03/06/2024 17:56 pip freeze > requirements.txt
 
 03/06/2024 18:33 LoginForm - added
+
+03/06/2024 19:03 form was updated with validators
