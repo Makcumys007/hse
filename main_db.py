@@ -4,7 +4,7 @@ import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, g, flash, abort, make_response, session, redirect, url_for
 from FDataBase import FDataBase
-from flask_login import LoginManager, login_user, login_required, logout_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from UserLogin import UserLogin
 
 DATABASE = '/tmp/flsite.db'
@@ -117,7 +117,13 @@ def showPost(alias):
         abort(404)
     return render_template('post.html', menu=dbase.getMenu(), title=title, post=post)
 
-
+@app.route('/profile')
+@login_required
+def profile():
+    return f"""
+        <p><a href="{url_for('logout')}">Logout</a></p>
+<p>User info: {current_user.get_id()}</p>
+    """
 
 @app.errorhandler(404)
 def pageNot(error):
