@@ -107,3 +107,5 @@ Commits
 03/06/2024 13:46 def getName getEmail getAvatar userava were added
 
 03/06/2024 14:45 avatar update
+
+03/06/2024 17:56 pip freeze > requirements.txt
