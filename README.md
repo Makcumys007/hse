@@ -91,3 +91,5 @@ Commits
 03/06/2024 09:29 disconnection DB - added
 
 03/06/2024 10:24 from UserLogin import UserLogin
+
+03/06/2024 11:53 logout_user() - added

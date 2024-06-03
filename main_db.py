@@ -4,7 +4,7 @@ import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, g, flash, abort, make_response, session, redirect, url_for
 from FDataBase import FDataBase
-from flask_login import LoginManager, login_user, login_required
+from flask_login import LoginManager, login_user, login_required, logout_user
 from UserLogin import UserLogin
 
 DATABASE = '/tmp/flsite.db'
@@ -75,9 +75,8 @@ def register():
 
 @app.route("/logout")
 def logout():
-    res = make_response(f"<h1>You are not authorised anymore!</p>")
-    res.set_cookie("logged", "", 0)
-    return res
+    logout_user()
+    return redirect(url_for('index'))
 
 @app.route("/")
 def index():
