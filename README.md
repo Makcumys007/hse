@@ -99,3 +99,5 @@ Commits
 03/06/2024 12:07 remainme - added
 
 03/06/2024 12:11 login_view - added
+
+03/06/2024 12:16 current_user.is_authenticated - added

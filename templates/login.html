@@ -5,6 +5,9 @@
 
 
 {{ super() }}
+{% for cat, msg in get_flashed_messages(True) %}
+    <div class="text-{{cat}}">{{msg}}</div>
+{% endfor %}
 
 <form accept="/login" method="post">
     <div class="form-group">
