@@ -139,6 +139,24 @@ def userava():
     header.headers['Content-Type'] = 'image/png'
     return header
 
+@app.route('/upload', methods=['POST', 'GET'])
+@login_required
+def upload():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and current_user.verifyExt(file.filename):
+            try:
+                img = file.read()
+                res = dbase.updateUserAvatar(img, current_user.get_id())
+                if not res:
+                    flash("Error of updating of avatar")
+                    return redirect(url_for('profile')) 
+            except FileNotFoundError as e:
+                flash("Error of file reading", "error")
+        else:
+            flash("Error of updating of avatar")
+    return redirect(url_for('profile')) 
+
 @app.errorhandler(404)
 def pageNot(error):
     return ("Page not found!", 404)

@@ -89,7 +89,7 @@ class FDataBase:
 
                 return res
         except sqlite3.Error as e:
-            print(f"Error getting post from DB {e}")
+            print(f"Error of getting post from DB {e}")
            
 
         return (False, False)
@@ -101,5 +101,19 @@ class FDataBase:
             res = self.__cur.fetchall()
             if res: return res
         except sqlite3.Error as e:
-            print(f"Error getting post from DB {e}")
+            print(f"Error of getting post from DB {e}")
         return []
+    
+    def updateUserAvatar(self, avatar, user_id):
+        if not avatar:
+            return False
+        
+        try:
+            binary = sqlite3.Binary(avatar)
+            self.__cur.execute(f"UPDATE users SET avatar = ? WHERE id = ?", (binary, user_id))
+            self.__db.commit()
+        except sqlite3.Error as e:
+            print(f"Error of updating avatar in DB {e}")
+            return False
+
+        return True
