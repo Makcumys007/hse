@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, g, flash, abort, make_response, session, redirect, url_for
 from FDataBase import FDataBase
 from flask_login import LoginManager, login_user, login_required
-import UserLogin
+from UserLogin import UserLogin
 
 DATABASE = '/tmp/flsite.db'
 DEBUG = True
@@ -146,7 +146,7 @@ def before_request():
 
 
 @app.teardown_request
-def teardown_request():
+def teardown_request(response):
     print("___---===Disconnection with Database===---___")
     if g.link_db is not None:
         g.link_db.close()
@@ -156,10 +156,10 @@ def after_request(response):
     print("after_request() called")
     return response
 
-@app.teardown_request
-def teardown_request(response):
-    print("teardown_request() called")
-    return response
+# @app.teardown_request
+# def teardown_request(response):
+#     print("teardown_request() called")
+#     return response
 
 
 if __name__ == "__main__":
