@@ -87,3 +87,5 @@ Commits
 02/06/2024 12:51 @login_manager.user_loader -added
 
 02/06/2024 13:01 def login  - updated
+
+02/06/2024 09:29 disconnection DB - added

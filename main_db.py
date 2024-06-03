@@ -42,7 +42,7 @@ def create_db():
 
 def get_db():
     if not hasattr(g, 'link_db'):
-        g.link_db = connect_db()
+        g.link_db = connect_db()        
     return g.link_db
 
 @app.route("/login", methods=["POST", "GET"])
@@ -118,10 +118,7 @@ def showPost(alias):
         abort(404)
     return render_template('post.html', menu=dbase.getMenu(), title=title, post=post)
 
-@app.teardown_appcontext
-def close_db(error):
-    if hasattr(g, 'link_db'):
-        g.link_db.close()
+
 
 @app.errorhandler(404)
 def pageNot(error):
@@ -146,6 +143,13 @@ def before_request():
     global dbase
     db = get_db()
     dbase = FDataBase(db)
+
+
+@app.teardown_request
+def teardown_request():
+    print("___---===Disconnection with Database===---___")
+    if g.link_db is not None:
+        g.link_db.close()
 
 @app.after_request
 def after_request(response):
