@@ -7,24 +7,25 @@
 {{ super() }}
 
 <form accept="/login" method="post">
-    <div class="form-group">
-      <label for="exampleInputLogin">Login</label>
-      <input type="text" name="name" class="form-control" id="exampleInputLogin" placeholder="Login" >
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail">Email</label>
-      <input type="text" name="email" class="form-control" id="exampleInputEmail" placeholder="Email" >
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input name="psw" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Repeat Password</label>
-      <input name="psw2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Submit</button>
+  {{ form.hidden_tag() }}
+  {% for field in form if field.name not in ['csrf_token', 'submit'] -%}
+  <div class="form-group">
+    {{ field.label() }}
+    {% if field.errors %}
+      {{ field(class_="form-control border border-danger") }}
+      <span class="text-danger">
+        {% for e in field.errors %}
+          {{ e }}
+        {% endfor %}
+        </span>
+    {% else %}
+      {{ field(class_="form-control")}}
+    {% endif %}
+  </div>
+  
+  {% endfor %}
+  
+  {{ form.submit(class_="btn btn-primary") }}
   </form>
 </div>
 {% endblock %}

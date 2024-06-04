@@ -115,3 +115,5 @@ Commits
 03/06/2024 19:03 form was updated with validators
 
 04/06/2024 07:28 for field in form if field.name
+
+04/06/2024 11:50 RegisterForm - added

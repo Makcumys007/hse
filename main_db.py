@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, g, flash, abort, make_respons
 from FDataBase import FDataBase
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from UserLogin import UserLogin
-from forms import LoginForm
+from forms import LoginForm, RegisterForm
 
 DATABASE = '/tmp/flsite.db'
 DEBUG = True
@@ -80,18 +80,30 @@ def login():
 
 @app.route("/register", methods=["POST", "GET"])
 def register():    
-    if request.method == "POST":
-        if len(request.form['name']) > 4 and len(request.form['email']) > 4 and len(request.form['psw']) > 4 and request.form['psw'] == request.form['psw2']:
-            hash = generate_password_hash(request.form['psw'])
-            res = dbase.addUser(request.form['name'], request.form['email'], hash)
-            if res:
-                flash("You have been registered successfuly", "success")
-                return redirect(url_for('login'))
-            else:
-                flash("Error of adding USER to DB", "danger")
+    # if request.method == "POST":
+    #     if len(request.form['name']) > 4 and len(request.form['email']) > 4 and len(request.form['psw']) > 4 and request.form['psw'] == request.form['psw2']:
+    #         hash = generate_password_hash(request.form['psw'])
+    #         res = dbase.addUser(request.form['name'], request.form['email'], hash)
+    #         if res:
+    #             flash("You have been registered successfuly", "success")
+    #             return redirect(url_for('login'))
+    #         else:
+    #             flash("Error of adding USER to DB", "danger")
+    #     else:
+    #         flash("Bad input in fields", "danger")
+    # return render_template('register.html', menu=dbase.getMenu(), title='Registration')
+
+    form = RegisterForm()
+    if form.validate_on_submit():
+        hash = generate_password_hash(form.psw.data)
+        res = dbase.addUser(form.name.data, form.email.data, hash)
+        if res:
+            flash("You have been registered successfuly", "success")
+            return redirect(url_for('login'))
         else:
-            flash("Bad input in fields", "danger")
-    return render_template('register.html', menu=dbase.getMenu(), title='Registration')
+            flash("Error of adding USER to DB", "danger")
+       
+    return render_template('register.html', menu=dbase.getMenu(), title='Registration', form=form)
 
 @app.route("/logout")
 def logout():
