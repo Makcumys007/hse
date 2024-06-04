@@ -27,32 +27,22 @@
 
   <form accept="/login" method="post">
     {{ form.hidden_tag() }}
+    {% for field in form if field.name not in ['csrf_token', 'remember', 'submit'] -%}
     <div class="form-group">
-      {{ form.email.label() }}
-      {% if form.email.errors %}
-        {{ form.email(class_="form-control border border-danger") }}
+      {{ field.label() }}
+      {% if field.errors %}
+        {{ field(class_="form-control border border-danger") }}
         <span class="text-danger">
-          {% for e in form.email.errors %}
+          {% for e in field.errors %}
             {{ e }}
           {% endfor %}
           </span>
       {% else %}
-        {{ form.email(class_="form-control")}}
+        {{ field(class_="form-control")}}
       {% endif %}
     </div>
-    <div class="form-group">
-      {{ form.psw.label() }}
-      {% if form.psw.errors %}
-        {{ form.psw(class_="form-control border border-danger") }}
-        <span class="text-danger">
-          {% for e in form.psw.errors %}
-            {{ e }}
-          {% endfor %}
-          </span>
-      {% else %}
-        {{ form.psw(class_="form-control")}}
-      {% endif %}
-    </div>
+    
+    {% endfor %}
     <div class="form-check">      
       {{ form.remember(class_="form-check-input")}}
       {{ form.remember.label() }}
