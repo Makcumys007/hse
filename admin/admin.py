@@ -13,8 +13,22 @@ from forms import LoginForm, RegisterForm
 
 admin = Blueprint('admin', __name__, template_folder='templates', static_folder='static')
 
+
+
 db = None
 
+def login_admin():
+    session['admin_logged'] = 1
+
+def isLogged():
+    return True if session.get('admin_logged') else False
+
+def logout_admin():
+    session.pop('admin_logged', None)
+
+menu = [{'url': '.index', 'title': 'Panel'},
+        {'url': '.logout', 'title': 'Logout'}]
+    
 @admin.before_request
 def before_request():
     print("___---===Connection with Database (admin app)===---___")
@@ -32,13 +46,15 @@ def teardown_request(request):
 
 @admin.route('/')
 def index():
-    return "admin"
+    if current_user.is_authenticated:
+        return "admin"
+    
 
 
 @admin.route("/login", methods=["POST", "GET"])
 def login():    
     if current_user.is_authenticated:
-        return redirect(url_for('profile'))
+        return redirect(url_for('.index'))
     form = LoginForm()
     if form.validate_on_submit():
         user = FDataBase(db).getUserByEmail(form.email.data)
@@ -51,3 +67,9 @@ def login():
         flash("Password is incorrect", "danger")
         
     return render_template('login.html', title='Login', form=form)
+
+
+@admin.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('.login'))

@@ -57,17 +57,6 @@ def get_db():
 def login():    
     if current_user.is_authenticated:
         return redirect(url_for('profile'))
-    # if request.method == "POST":
-    #     user = dbase.getUserByEmail(request.form['email'])
-    #     if user and check_password_hash(user['psw'], request.form['psw']):
-    #         userlogin = UserLogin().create(user)
-    #         rm = True if request.form.get('remainme') else False            
-    #         login_user(userlogin, remember=rm)
-    #         return redirect(request.args.get('next') or url_for('index'))
-        
-    #     flash("Password is incorrect", "danger")
-
-    # return render_template('login.html', menu=dbase.getMenu(), title='Login')
     form = LoginForm()
     if form.validate_on_submit():
         user = dbase.getUserByEmail(form.email.data)
@@ -83,19 +72,6 @@ def login():
 
 @app.route("/register", methods=["POST", "GET"])
 def register():    
-    # if request.method == "POST":
-    #     if len(request.form['name']) > 4 and len(request.form['email']) > 4 and len(request.form['psw']) > 4 and request.form['psw'] == request.form['psw2']:
-    #         hash = generate_password_hash(request.form['psw'])
-    #         res = dbase.addUser(request.form['name'], request.form['email'], hash)
-    #         if res:
-    #             flash("You have been registered successfuly", "success")
-    #             return redirect(url_for('login'))
-    #         else:
-    #             flash("Error of adding USER to DB", "danger")
-    #     else:
-    #         flash("Bad input in fields", "danger")
-    # return render_template('register.html', menu=dbase.getMenu(), title='Registration')
-
     form = RegisterForm()
     if form.validate_on_submit():
         hash = generate_password_hash(form.psw.data)
@@ -189,19 +165,6 @@ def upload():
 def pageNot(error):
     return ("Page not found!", 404)
 
-#####################################
-
-data = [1,2,3,4]
-@app.route("/session")
-def session_data():
-    session.permanent = True
-    if 'data' not in session:
-        session['data'] = data
-    else:
-        session['data'][1] += 1
-        session.modified = True
-    return f"<p>session['data']: {session['data']}</p>"
-
 @app.before_request
 def before_request():
     print("___---===Connection with Database===---___")
@@ -216,15 +179,7 @@ def teardown_request(response):
     if g.link_db is not None:
         g.link_db.close()
 
-@app.after_request
-def after_request(response):
-    print("after_request() called")
-    return response
 
-# @app.teardown_request
-# def teardown_request(response):
-#     print("teardown_request() called")
-#     return response
 
 
 if __name__ == "__main__":

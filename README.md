@@ -121,3 +121,5 @@ Commits
 04/06/2024 13:10 Blueprint index - added
 
 05/06/2024 07:26 before_request, teardown_request, login were added
+
+05/06/2024 09:08 def logout - added
