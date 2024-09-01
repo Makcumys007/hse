@@ -1,14 +1,22 @@
 <?php
 
+use App\Http\Controllers\HSEController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect('login');
+    if (Auth::check()) {
+        return redirect('hseboard');
+    } else {
+        return redirect('login');
+    }
 });
 
+Route::get('/hse', [HSEController::class,'index'])->name('hse');
+
 Route::get('/hseboard', function () {
-    return view('hseboard');
+    return view('admin.hseboard');
 })->middleware(['auth', 'verified'])->name('hseboard');
 
 Route::middleware('auth')->group(function () {
