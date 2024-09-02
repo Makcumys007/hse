@@ -10,7 +10,7 @@ class HSEController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
-        return 'Hello, world!';
+       //
     }
 
     /**
@@ -19,6 +19,7 @@ class HSEController extends Controller
     public function create()
     {
         //
+        return view('admin.hseboard');
     }
 
     /**l
