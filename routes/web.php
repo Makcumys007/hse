@@ -14,6 +14,7 @@ Route::get('/', function () {
 });
 
 Route::get('/hse', [HSEController::class,'index'])->name('hse');
+//lRoute::resource('tasks', HSEController::class);
 
 Route::get('/hseboard', function () {
     return view('admin.hseboard');
