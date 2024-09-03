@@ -7,6 +7,7 @@ use App\Models\Hseboard;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+
 class HSEController extends Controller
 {
     /**
@@ -54,19 +55,6 @@ class HSEController extends Controller
         return redirect('hseboard')->with('success','Information successfully updated!');
     }
 
-    public function upload_video(Request $request) {
-
-        $request->validate([
-            'video' => 'required|mimes:mp4,mov,ogg,qt|max:200000', // Ограничение на тип и размер файла
-        ]);
-    
-        $video = $request->file('video');
-        $filename = uniqid() . '.' . $video->getClientOriginalExtension(); // Генерация уникального имени файла
-        $path = $video->storeAs('videos', $filename, 'public'); // Сохранение видео с новым именем в папку 'videos' в публичном хранилище
-    
-        return back()->with('success', 'Видео успешно загружено!')->with('path', $path);
-        // return redirect('hseboard')->with('video-success','Video successfully loaded!');
-    }
 
     /**
      * Display the specified resource.

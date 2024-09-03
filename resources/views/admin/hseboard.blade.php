@@ -81,7 +81,7 @@
                         @endif
 
                     </header>
-                    <form method="post" action="{{route('hseboard.upload.video') }}" enctype="multipart/form-data" class="mt-6 space-y-6">  
+                    <form method="post" action="" enctype="multipart/form-data" class="mt-6 space-y-6">  
                         @csrf   
                         <div>
                       
