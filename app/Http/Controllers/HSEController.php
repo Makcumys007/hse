@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hseboard;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HSEController extends Controller
 {
@@ -20,7 +21,7 @@ class HSEController extends Controller
      */
     public function create()
     {
-        //
+        //        
         return view('admin.hseboard');
     }
 
@@ -29,8 +30,25 @@ class HSEController extends Controller
      */
     public function store(Request $request)
     {
-        //l
-        return redirect('hseboard');
+        //
+        $validatedData = $req = $request->validate([
+            'lost_time_injuries' => 'required|integer',
+            'medical_treatment'=> 'required|integer',
+            'first_aid_cases' => 'required|integer',
+            'lost_time_injuries_free_days' => 'required|integer',
+            'safe_men_hours'=> 'required|integer'
+        ]);
+        $result = new Hseboard();
+        $result->lost_time_injuries = $validatedData['lost_time_injuries'];
+        $result->medical_treatment = $validatedData['medical_treatment'];
+        $result->first_aid_cases = $validatedData['first_aid_cases'];
+        $result->lost_time_injuries_free_days = $validatedData['lost_time_injuries_free_days'];
+        $result->safe_men_hours = $validatedData['safe_men_hours'];
+        $result->user_id = Auth::user()->id;
+        $result->save();
+
+
+        return redirect('hseboard')->with('success','Данные успешно сохранены!');
     }
 
     /**
