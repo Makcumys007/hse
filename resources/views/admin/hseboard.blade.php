@@ -81,13 +81,13 @@
                         @endif
 
                     </header>
-                    <form method="post" action="{{route('hseboard_video') }}" class="mt-6 space-y-6">  
-                    @csrf   
+                    <form method="post" action="{{route('hseboard.upload.video') }}" class="mt-6 space-y-6">  
+                        @csrf   
                         <div>
                       
 
                             <label class="custom-file-upload">
-                                <input type="file" class="file-input"/>
+                                <input name="video" type="file" class="file-input"/>
                                 Load video for HSEBoard
                             </label>
                             

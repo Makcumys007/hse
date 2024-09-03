@@ -54,7 +54,7 @@ class HSEController extends Controller
         return redirect('hseboard')->with('success','Information successfully updated!');
     }
 
-    public function store_video(Request $request) {
+    public function upload_video(Request $request) {
         return redirect('hseboard')->with('video-success','Video successfully loaded!');
     }
 
