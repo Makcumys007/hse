@@ -32,7 +32,9 @@ class VideoController extends Controller
     public function uploadVideo(Request $request)
    {
         
- 
+    $request->validate([
+        'video' => 'required|file|mimetypes:video/mp4',
+    ]);
         $fileName = $request->video->getClientOriginalName();
         $newFileName = Str::random(15) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
         $filePath = 'videos/' . $newFileName;
