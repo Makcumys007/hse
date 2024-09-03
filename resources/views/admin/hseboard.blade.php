@@ -70,24 +70,27 @@
                 <section>
                     <header>
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            HSEBoard  Information
+                            HSEBoard  Video
                         </h2>
 
-                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            Update information.
-                        </p>
-                        @if (session('success'))
+                       
+                        @if (session('video-success'))
                             <div id="success-message" class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                                {{ session('success') }}
+                                {{ session('video-success') }}
                             </div>
                         @endif
 
                     </header>
-                    <form method="post" action="" class="mt-6 space-y-6">  
+                    <form method="post" action="{{route('hseboard_video') }}" class="mt-6 space-y-6">  
                     @csrf   
                         <div>
-                            <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >Lost time Injuries</label>
-                            <input class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full"  name="lost_time_injuries" type="number" value="{{ isset($lastRecord->lost_time_injuries) ? $lastRecord->lost_time_injuries : '0' }}" required="required"  >
+                      
+
+                            <label class="custom-file-upload">
+                                <input type="file" class="file-input"/>
+                                Load video for HSEBoard
+                            </label>
+                            
                         </div>
 
 
