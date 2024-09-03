@@ -21,8 +21,9 @@ class HSEController extends Controller
      */
     public function create()
     {
-        //        
-        return view('admin.hseboard');
+        //     
+        $lastRecord = Hseboard::latest()->first();   
+        return view('admin.hseboard', compact('lastRecord'));
     }
 
     /**l
