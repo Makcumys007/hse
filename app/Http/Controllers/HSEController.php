@@ -33,7 +33,7 @@ class HSEController extends Controller
     public function store(Request $request)
     {
         //
-        $validatedData = $req = $request->validate([
+        $validatedData = $request->validate([
             'lost_time_injuries'            => 'required|integer',
             'medical_treatment'             => 'required|integer',
             'first_aid_cases'               => 'required|integer',

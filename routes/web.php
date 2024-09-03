@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HSEController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,11 @@ Route::get('/', function () {
 
 
 Route::get('/hseboard', [HSEController::class,'create'])->middleware(['auth', 'verified'])->name('hseboard');
-
 Route::post('/hseboard', [HSEController::class,'store'])->middleware(['auth', 'verified'])->name('hseboard');
-//Route::post('/hseboard/upload-video', [HSEController::class,'upload_video'])->middleware(['auth', 'verified'])->name('hseboard.upload.video');
+
+Route::get('video-upload', [ VideoController::class, 'getVideoUploadForm' ])->name('get.video.upload');
+Route::post('video-upload', [ VideoController::class, 'uploadVideo' ])->name('store.video');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
