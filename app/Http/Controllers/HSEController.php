@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Hseboard;
+use App\Models\User;
 
 class HSEController extends Controller
 {
@@ -27,7 +29,8 @@ class HSEController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //l
+        return redirect('hseboard');
     }
 
     /**
