@@ -16,5 +16,7 @@ class Hseboard extends Model
                             'first_aid_cases',
                             'lost_time_injuries_free_days',
                             'safe_men_hours',
-                            'date'];
+                            'date',
+                            'user_id',
+                            'runnig_string'];
 }
