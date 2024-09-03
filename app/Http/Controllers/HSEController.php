@@ -55,7 +55,17 @@ class HSEController extends Controller
     }
 
     public function upload_video(Request $request) {
-        return redirect('hseboard')->with('video-success','Video successfully loaded!');
+
+        $request->validate([
+            'video' => 'required|mimes:mp4,mov,ogg,qt|max:200000', // Ограничение на тип и размер файла
+        ]);
+    
+        $video = $request->file('video');
+        $filename = uniqid() . '.' . $video->getClientOriginalExtension(); // Генерация уникального имени файла
+        $path = $video->storeAs('videos', $filename, 'public'); // Сохранение видео с новым именем в папку 'videos' в публичном хранилище
+    
+        return back()->with('success', 'Видео успешно загружено!')->with('path', $path);
+        // return redirect('hseboard')->with('video-success','Video successfully loaded!');
     }
 
     /**
