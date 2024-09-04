@@ -19,8 +19,9 @@ Route::get('/', function () {
 Route::get('/hseboard', [HSEController::class,'create'])->middleware(['auth', 'verified'])->name('hseboard');
 Route::post('/hseboard', [HSEController::class,'store'])->middleware(['auth', 'verified'])->name('hseboard');
 
-Route::get('video-upload', [ VideoController::class, 'getVideoUploadForm' ])->name('get.video.upload');
 Route::post('video-upload', [ VideoController::class, 'uploadVideo' ])->name('store.video');
+
+Route::post('image-upload', [ VideoController::class, 'uploadImage' ])->name('store.image');
 
 
 Route::middleware('auth')->group(function () {

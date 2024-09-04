@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Video;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-class VideoController extends Controller
+
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,43 +17,40 @@ class VideoController extends Controller
         //
     }
 
+    public function uploadImage(Request $request)
+   {
+        $validate = $request->validate([
+            'image' => 'required|file|mimetypes:image/png,image/jpeg',
+        ]);
+ 
+        $fileName = $request->video->getClientOriginalName();
+        $newFileName = Str::random(15) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
+        $filePath = 'images/' . $newFileName;
+        
+        $isFileUploaded = Storage::disk('public')->put($filePath, file_get_contents($validate['image']));
+ 
+        // File URL to access the video in frontend
+        $url = Storage::disk('public')->url($filePath);
+ 
+        if ($isFileUploaded) {
+            $video = new Image();
+            $video->path = $filePath;
+            $video->save();
+ 
+            return back()
+            ->with('image-success','Image has been successfully uploaded.');
+        }
+ 
+        return back()
+            ->with('image-error','Unexpected error occured');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         //
-    }
-
- 
-    public function uploadVideo(Request $request)
-   {
-        $validate = $request->validate([
-            //   'title' => 'required|string|max:255',
-            'video' => 'required|file|mimetypes:video/mp4',
-        ]);
-   
-        $fileName = $request->video->getClientOriginalName();
-        $newFileName = Str::random(15) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
-        $filePath = 'videos/' . $newFileName;
-        
-        $isFileUploaded = Storage::disk('public')->put($filePath, file_get_contents($validate['video']));
- 
-        // File URL to access the video in frontend
-        $url = Storage::disk('public')->url($filePath);
- 
-        if ($isFileUploaded) {
-            $video = new Video();
-            $video->title = $newFileName;
-            $video->path = $filePath;
-            $video->save();
- 
-            return back()
-            ->with('video-success','Video has been successfully uploaded.');
-        }
- 
-        return back()
-            ->with('video-error','Unexpected error occured');
     }
 
     /**
