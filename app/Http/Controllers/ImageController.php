@@ -23,7 +23,7 @@ class ImageController extends Controller
             'image' => 'required|file|mimetypes:image/png,image/jpeg',
         ]);
  
-        $fileName = $request->video->getClientOriginalName();
+        $fileName = $request->image->getClientOriginalName();
         $newFileName = Str::random(15) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
         $filePath = 'images/' . $newFileName;
         
@@ -33,9 +33,9 @@ class ImageController extends Controller
         $url = Storage::disk('public')->url($filePath);
  
         if ($isFileUploaded) {
-            $video = new Image();
-            $video->path = $filePath;
-            $video->save();
+            $image = new Image();
+            $image->path = $filePath;
+            $image->save();
  
             return back()
             ->with('image-success','Image has been successfully uploaded.');

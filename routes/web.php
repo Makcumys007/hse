@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HSEController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,7 @@ Route::post('/hseboard', [HSEController::class,'store'])->middleware(['auth', 'v
 
 Route::post('video-upload', [ VideoController::class, 'uploadVideo' ])->name('store.video');
 
-Route::post('image-upload', [ VideoController::class, 'uploadImage' ])->name('store.image');
+Route::post('image-upload', [ ImageController::class, 'uploadImage' ])->name('store.image');
 
 
 Route::middleware('auth')->group(function () {
