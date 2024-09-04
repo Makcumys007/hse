@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 
 
+
 Route::get('/hseboard', [HSEController::class,'create'])->middleware(['auth', 'verified'])->name('hseboard');
 Route::post('/hseboard', [HSEController::class,'store'])->middleware(['auth', 'verified'])->name('hseboard');
 

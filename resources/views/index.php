@@ -1,13 +1,3 @@
-<?php 
-include 'admin/weather.php';
-
-
-// Получаем текущую дату и время
-$currentDateTime = new DateTime();
-
-// Форматируем дату в нужный формат (00.00.00)
-$formattedDate = $currentDateTime->format('d.m.y');
-?>
 
 
 
@@ -17,7 +7,7 @@ $formattedDate = $currentDateTime->format('d.m.y');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <!-- Подключение CSS -->
-	<link href="bootstrap/css/style.css" rel="stylesheet"> 
+	<link href="{{ url('bootstrap/css/style.css')}}" rel="stylesheet"> 
 	<!-- Подключение JS (необязательно, если вы не используете компоненты, требующие JavaScript) 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> -->
   <style>
