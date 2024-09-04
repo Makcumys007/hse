@@ -52,7 +52,7 @@ class HSEController extends Controller
         $result->save();
 
 
-        return redirect('hseboard')->with('success','Information successfully updated!');
+        return back()->with('success','Information successfully updated!');
     }
 
 

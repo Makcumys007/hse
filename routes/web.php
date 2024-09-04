@@ -20,6 +20,8 @@ Route::get('/', function () {
 Route::get('/hseboard', [HSEController::class,'create'])->middleware(['auth', 'verified'])->name('hseboard');
 Route::post('/hseboard', [HSEController::class,'store'])->middleware(['auth', 'verified'])->name('hseboard');
 
+Route::get('/gateboard', [HSEController::class,'create'])->middleware(['auth', 'verified'])->name('gateboard');
+
 Route::post('video-upload', [ VideoController::class, 'uploadVideo' ])->name('store.video');
 
 Route::post('image-upload', [ ImageController::class, 'uploadImage' ])->name('store.image');
