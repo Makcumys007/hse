@@ -21,6 +21,7 @@ class ImageController extends Controller
    {
         $validate = $request->validate([
             'image' => 'required|file|mimetypes:image/png,image/jpeg',
+            'dashboard_title' => 'required',
         ]);
  
         $fileName = $request->image->getClientOriginalName();
@@ -35,6 +36,7 @@ class ImageController extends Controller
         if ($isFileUploaded) {
             $image = new Image();
             $image->path = $filePath;
+            $image->dashboard_title = $validate['dashboard_title'];
             $image->save();
  
             return back()
