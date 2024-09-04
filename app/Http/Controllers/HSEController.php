@@ -20,11 +20,18 @@ class HSEController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createHSEboard()
     {
         //     
         $lastRecord = Hseboard::latest()->first();   
         return view('admin.hseboard', compact('lastRecord'));
+    }
+
+    public function createGateBoard()
+    {
+        //     
+        $lastRecord = Hseboard::latest()->first();   
+        return view('admin.gateboard', compact('lastRecord'));
     }
 
     /**l

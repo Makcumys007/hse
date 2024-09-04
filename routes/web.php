@@ -17,10 +17,10 @@ Route::get('/', function () {
 
 
 
-Route::get('/hseboard', [HSEController::class,'create'])->middleware(['auth', 'verified'])->name('hseboard');
+Route::get('/hseboard', [HSEController::class,'createHSEboard'])->middleware(['auth', 'verified'])->name('hseboard');
 Route::post('/hseboard', [HSEController::class,'store'])->middleware(['auth', 'verified'])->name('hseboard');
 
-Route::get('/gateboard', [HSEController::class,'create'])->middleware(['auth', 'verified'])->name('gateboard');
+Route::get('/gateboard', [HSEController::class,'createGateBoard'])->middleware(['auth', 'verified'])->name('gateboard');
 
 Route::post('video-upload', [ VideoController::class, 'uploadVideo' ])->name('store.video');
 
