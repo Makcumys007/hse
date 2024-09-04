@@ -31,15 +31,16 @@ class VideoController extends Controller
  
     public function uploadVideo(Request $request)
    {
-        
-    $request->validate([
-        'video' => 'required|file|mimetypes:video/mp4',
-    ]);
+        $validate = $request->validate([
+         //   'title' => 'required|string|max:255',
+            'video' => 'required|file|mimetypes:video/mp4',
+        ]);
+   
         $fileName = $request->video->getClientOriginalName();
         $newFileName = Str::random(15) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
         $filePath = 'videos/' . $newFileName;
         
-        $isFileUploaded = Storage::disk('public')->put($filePath, file_get_contents($request->video));
+        $isFileUploaded = Storage::disk('public')->put($filePath, file_get_contents($validate['video']));
  
         // File URL to access the video in frontend
         $url = Storage::disk('public')->url($filePath);
