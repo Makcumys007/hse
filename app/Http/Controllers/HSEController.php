@@ -47,6 +47,7 @@ class HSEController extends Controller
             'lost_time_injuries_free_days'  => 'required|integer',
             'safe_men_hours'                => 'required|integer',
             'running_string'                => 'required|string',
+            'count_of_lti_year'             => 'required|integer',
         ]);
         $result = new Hseboard();
         $result->lost_time_injuries = $validatedData['lost_time_injuries'];
@@ -55,6 +56,7 @@ class HSEController extends Controller
         $result->lost_time_injuries_free_days = $validatedData['lost_time_injuries_free_days'];
         $result->safe_men_hours = $validatedData['safe_men_hours'];
         $result->running_string = $validatedData['running_string'];
+        $result->count_of_lti_year = $validatedData['count_of_lti_year'];
         $result->user_id = Auth::user()->id;
         $result->save();
 
