@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Gate;
 use Illuminate\Http\Request;
-use App\Models\Hseboard;
+use App\Models\Gateboard;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
-class HSEController extends Controller
+class GateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,12 +22,11 @@ class HSEController extends Controller
      * Show the form for creating a new resource.
      */
    
-
     public function create()
     {
         //     
-        $lastRecord = Hseboard::latest()->first();   
-        return view('admin.hseboard', compact('lastRecord'));
+        $lastRecord = Gateboard::latest()->first();   
+        return view('admin.gateboard', compact('lastRecord'));
     }
 
     /**l
@@ -36,21 +36,16 @@ class HSEController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'lost_time_injuries'            => 'required|integer',
-            'medical_treatment'             => 'required|integer',
-            'first_aid_cases'               => 'required|integer',
             'lost_time_injuries_free_days'  => 'required|integer',
-            'safe_men_hours'                => 'required|integer',
+            'count_of_lti_year'             => 'required|integer',
             'running_string'                => 'required|string',
+            
         ]);
-        $result = new Hseboard();
-        $result->lost_time_injuries = $validatedData['lost_time_injuries'];
-        $result->medical_treatment = $validatedData['medical_treatment'];
-        $result->first_aid_cases = $validatedData['first_aid_cases'];
-        $result->lost_time_injuries_free_days = $validatedData['lost_time_injuries_free_days'];
-        $result->safe_men_hours = $validatedData['safe_men_hours'];
-        $result->running_string = $validatedData['running_string'];
+        $result = new Gateboard(); 
+        $result->lost_time_injuries_free_days = $validatedData['lost_time_injuries_free_days']; 
+        $result->count_of_lti_year = $validatedData['count_of_lti_year'];
         $result->user_id = Auth::user()->id;
+        $result->running_string = $validatedData['running_string'];
         $result->save();
 
 

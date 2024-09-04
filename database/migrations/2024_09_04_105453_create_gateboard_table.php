@@ -6,14 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-         /**
+    /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('hseboard', function (Blueprint $table) {
-            //
+        Schema::create('gateboard', function (Blueprint $table) {
+            $table->id();
             $table->integer('count_of_lti_year');
+            $table->integer('lost_time_injuries_free_days');
+            $table->string('running_string');
+            $table->integer('user_id');
+            $table->timestamps();
         });
     }
 
@@ -22,9 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('hseboard', function (Blueprint $table) {
-            //
-            $table->dropColumn('count_of_lti_year');
-        });
+        Schema::dropIfExists('gateboard');
     }
 };

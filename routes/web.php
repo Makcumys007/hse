@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HSEController;
+use App\Http\Controllers\GateController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProfileController;
@@ -17,10 +18,11 @@ Route::get('/', function () {
 
 
 
-Route::get('/hseboard', [HSEController::class,'createHSEboard'])->middleware(['auth', 'verified'])->name('hseboard');
+Route::get('/hseboard', [HSEController::class,'create'])->middleware(['auth', 'verified'])->name('hseboard');
 Route::post('/hseboard', [HSEController::class,'store'])->middleware(['auth', 'verified'])->name('hseboard');
 
-Route::get('/gateboard', [HSEController::class,'createGateBoard'])->middleware(['auth', 'verified'])->name('gateboard');
+Route::get('/gateboard', [GateController::class,'create'])->middleware(['auth', 'verified'])->name('gateboard');
+Route::post('/gateboard', [GateController::class,'store'])->middleware(['auth', 'verified'])->name('gateboard');
 
 Route::post('video-upload', [ VideoController::class, 'uploadVideo' ])->name('store.video');
 

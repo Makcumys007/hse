@@ -25,12 +25,9 @@
                         @endif
 
                     </header>
-                    <form method="post" action="{{route('hseboard') }}" class="mt-6 space-y-6">  
+                    <form method="post" action="{{route('gateboard') }}" class="mt-6 space-y-6">  
                     @csrf   
-                        <input type="hidden" name="lost_time_injuries" value="{{ $lastRecord->lost_time_injuries ?? '' }}">
-                        <input type="hidden" name="safe_men_hours" value="{{ $lastRecord->safe_men_hours ?? '' }}">
-                        <input type="hidden" name="medical_treatment" value="{{ $lastRecord->medical_treatment ?? '' }}">
-                        <input type="hidden" name="first_aid_cases" value="{{ $lastRecord->first_aid_cases ?? '' }}">
+                        
                         <div>
                             <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >Count of LTI of last year</label>
                             <input class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full"  name="count_of_lti_year" type="number" value="{{ $lastRecord->count_of_lti_year ?? '' }}" required="required"  >
