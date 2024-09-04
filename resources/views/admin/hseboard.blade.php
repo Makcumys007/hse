@@ -79,7 +79,11 @@
                                 {{ session('video-success') }}
                             </div>
                         @endif
-                      
+                        @if (session('video-error'))
+                            <div id="danger-message" class="mb-4 font-medium text-sm text-red-600 dark:text-red-400">
+                                {{ session('video-error') }}
+                            </div>
+                        @endif
 
                     </header>
                     <form method="post" action="{{ route('store.video') }}" enctype="multipart/form-data" class="mt-6 space-y-6">  
@@ -122,4 +126,4 @@
     });
 </script>
 
-<?php phpinfo(); ?>
+

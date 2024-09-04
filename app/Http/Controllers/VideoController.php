@@ -32,7 +32,7 @@ class VideoController extends Controller
     public function uploadVideo(Request $request)
    {
         $validate = $request->validate([
-         //   'title' => 'required|string|max:255',
+            //   'title' => 'required|string|max:255',
             'video' => 'required|file|mimetypes:video/mp4',
         ]);
    
