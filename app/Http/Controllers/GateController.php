@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Gate;
 use Illuminate\Http\Request;
 use App\Models\Gateboard;
+use App\Models\Video;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
@@ -38,7 +39,9 @@ class GateController extends Controller
         $lastRecord = Gateboard::latest()->first();
         $last_lti_date = Carbon::parse($lastRecord->last_lti_date)->format('d.m.Y');
 
-        return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord', 'temperature', 'wind'));
+        $video = Video::where('dashboard_title', 'gate')->latest()->first()->path;
+
+        return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord', 'temperature', 'wind', 'video'));
     }
 
     /**

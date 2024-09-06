@@ -175,7 +175,7 @@
           
           <div class="embed-responsive embed-responsive-16by9">
               <video controls loop autoplay muted  class="video">
-                    <source src="" type="video/mp4">
+                    <source src="{{ Illuminate\Support\Facades\Storage::disk('public')->url($video) }}" type="video/mp4">
                 </video>
           </div>
         </div>
