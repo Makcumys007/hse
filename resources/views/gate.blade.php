@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Refresh" content="3600" />
+    <meta http-equiv="Refresh" content="600" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <!-- Подключение CSS -->
 	<link href="{{ url('bootstrap/css/style.css')}}" rel="stylesheet"> 
@@ -183,7 +183,7 @@
     </div>
     <div class="row">       
         <div class="col ">        
-          <h1 id="anim"  class="mt-1 text-danger "> </h1>       
+          <h1 id="anim"  class="mt-1 text-danger "> {{ $lastRecord->running_string }} </h1>       
         </div>
      
     </div>
