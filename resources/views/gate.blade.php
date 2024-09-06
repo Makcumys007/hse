@@ -1,31 +1,3 @@
-<?php 
-include 'admin/weather2.php';
-
-
-  include 'admin/connection.php';
-
-
-$result = mysqli_query($connection, "SELECT * FROM kpp_info ORDER BY id DESC LIMIT 1;");
-     $item = mysqli_fetch_array($result);
-     $days_no_lti = $item['days_no_lti'];
-     $count_lti_this_year = $item['count_lti_this_year'];
-     $last_lti = $item['last_lti'];
-
-     $last_lti = date('d.m.y', strtotime($last_lti ));
-
-      $result = mysqli_query($connection, "SELECT * FROM kpp_video ORDER BY id DESC LIMIT 1;");
-      $item = mysqli_fetch_array($result);
-      $url = $item['url'];
-
-      $result = mysqli_query($connection, "SELECT * FROM kpp_run_string ORDER BY id DESC LIMIT 1;");
-       $item = mysqli_fetch_array($result);
-       $string = $item['string'];
-// Получаем текущую дату и время
-$currentDateTime = new DateTime();
-
-// Форматируем дату в нужный формат (00.00.00)
-$formattedDate = $currentDateTime->format('d.m.y');
-?>
 
 
 
@@ -36,7 +8,7 @@ $formattedDate = $currentDateTime->format('d.m.y');
     <meta http-equiv="Refresh" content="3600" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <!-- Подключение CSS -->
-	<link href="bootstrap/css/style.css" rel="stylesheet"> 
+	<link href="{{ url('bootstrap/css/style.css')}}" rel="stylesheet"> 
 	<!-- Подключение JS (необязательно, если вы не используете компоненты, требующие JavaScript) 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> -->
   <style>
@@ -87,28 +59,27 @@ $formattedDate = $currentDateTime->format('d.m.y');
                                                         <tbody>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ДАТА</h2></th>
-                                                            <td><h1 class="text-danger data-size  data-size ">
-                                                              <?php echo $formattedDate;?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size  data-size ">{{ $currentDate }}</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ДАТА ПОСЛЕДНЕГО НЕСЧАТНОГО СЛУЧАЯ</h2></th>
-                                                            <td><h1 class="text-danger data-size  data-size "><?php echo $last_lti; ?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size  data-size "></h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">КОЛИЧЕСТВО ДНЕЙ БЕЗ НЕСЧАСТНОГО СЛУЧАЯ</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $days_no_lti; ?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size "></h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">КОЛИЧЕСТВО НЕСЧАСТНЫХ СЛУЧАЕВ В ЭТОМ ГОДУ</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $count_lti_this_year; ?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ТЕМПЕРАТУРА, °С</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $temperature; ?> </h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">... </h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">СКОРОСТЬ ВЕТРА, м/с</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $wind; ?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                            
                                                           </tr>
                                                           
                                                         </tbody>
@@ -121,27 +92,27 @@ $formattedDate = $currentDateTime->format('d.m.y');
                                                         <tbody>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">DATE</h2></th>
-                                                            <td><h1 class="text-danger data-size  data-size "><?php echo $formattedDate;?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size  data-size ">{{ $currentDate }}</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">LAST LTI DATE</h2></th>
-                                                            <td><h1 class="text-danger data-size  data-size "><?php echo $last_lti; ?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size  data-size ">...</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">NUMBER OF DAYS WITHOUT LTI</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $days_no_lti; ?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">NUMBER OF LTI THIS YEAR</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $count_lti_this_year; ?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">TEMPERATURE, °С</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $temperature; ?> </h1></td>                                                              
+                                                            <td><h1 class="text-danger data-size ">... </h1></td>                                                              
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">WIND SPEED, m/s</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $wind; ?></h1></td>                                                             
+                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                             
                                                           </tr>
                                                           
                                                         </tbody>
@@ -153,27 +124,27 @@ $formattedDate = $currentDateTime->format('d.m.y');
                                                         <tbody>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">КҮНІ</h2></th>
-                                                            <td><h1 class="text-danger data-size  data-size "><?php echo $formattedDate;?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size  data-size ">{{ $currentDate }}</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">СОҢҒЫ ЖАЗАТАЙЫМ ОҚИҒА КҮНІ</h2></th>
-                                                            <td><h1 class="text-danger data-size  data-size "><?php echo $last_lti; ?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size  data-size ">...</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ЖАЗАТАЙЫМ ОҚИҒАСЫЗ КҮНДЕР САНЫ</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $days_no_lti; ?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ОСЫ ЖЫЛЫҒЫ ЖАЗАТАЙЫМ ОҚИҒАЛАР САНЫ</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $count_lti_this_year; ?></h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ТЕМПЕРАТУРА, °С</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $temperature; ?> </h1></td>                                                              
+                                                            <td><h1 class="text-danger data-size ">... </h1></td>                                                              
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ЖЕЛДІҢ ЖЫЛДАМДЫҒЫ, m/s</h2></th>
-                                                            <td><h1 class="text-danger data-size "><?php echo $wind; ?></h1></td>                                                             
+                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                             
                                                           </tr>
                                                           
                                                         </tbody>
@@ -204,7 +175,7 @@ $formattedDate = $currentDateTime->format('d.m.y');
           
           <div class="embed-responsive embed-responsive-16by9">
               <video controls loop autoplay muted  class="video">
-                    <source src="<?php echo $url; ?>" type="video/mp4">
+                    <source src="" type="video/mp4">
                 </video>
           </div>
         </div>
@@ -212,7 +183,7 @@ $formattedDate = $currentDateTime->format('d.m.y');
     </div>
     <div class="row">       
         <div class="col ">        
-          <h1 id="anim"  class="mt-1 text-danger "><?php echo $string; ?> </h1>       
+          <h1 id="anim"  class="mt-1 text-danger "> </h1>       
         </div>
      
     </div>

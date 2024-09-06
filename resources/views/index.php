@@ -287,13 +287,13 @@
         								 <img src="weather/icons8-thermometer-80.png" height="30" >
         							</td>
         							<td>
-        								<h1><?php echo $temperature; ?> °C</h1>
+        								<h1>... °C</h1>
         							</td>
         							<td>
         								 <img src="weather/icons8-wind-80.png" height="30" >
         							</td>
         							<td>
-        								<h1><?php echo $wind; ?></h1>
+        								<h1>...</h1>
         							</td>
         							<td>
         								<h1>m/s</h1>

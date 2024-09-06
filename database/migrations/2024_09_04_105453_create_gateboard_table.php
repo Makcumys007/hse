@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('count_of_lti_year');
             $table->integer('lost_time_injuries_free_days');
             $table->string('running_string');
+            $table->date('last_lti_date');
             $table->integer('user_id');
             $table->timestamps();
         });

@@ -15,5 +15,6 @@ class Gateboard extends Model
                             'lost_time_injuries_free_days',
                             'count_of_lti_year',
                             'user_id',
-                            'runnig_string',];
+                            'runnig_string',
+                            'last_lti_date'];
 }

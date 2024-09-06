@@ -29,6 +29,11 @@
                     @csrf   
                         
                         <div>
+                            <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >Last LTI date</label>
+                            <input class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full"  name="last_lti_date" type="date" value="{{ $lastRecord->last_lti_date ?? '' }}" required="required"  >
+                        </div>
+
+                        <div>
                             <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >Count of LTI of last year</label>
                             <input class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full"  name="count_of_lti_year" type="number" value="{{ $lastRecord->count_of_lti_year ?? '' }}" required="required"  >
                         </div>
