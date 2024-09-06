@@ -8,6 +8,7 @@ use App\Models\Gateboard;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 
 
 class GateController extends Controller
@@ -17,11 +18,23 @@ class GateController extends Controller
      */
     public function index() {
 
+        $response = Http::get('http://localhost:3000/temperature');
+
+        if ($response->failed()) {
+            return response()->json(['error' => 'Failed to fetch temperature'], 500);
+        }
+
+        // Получаем JSON-ответ и декодируем его
+        $data = $response->json();
+
+        // Извлекаем значение температуры
+        $temperature = $data['temperature'];
+
         $currentDate = Carbon::now()->format('d.m.Y');
         $lastRecord = Gateboard::latest()->first();
         $last_lti_date = Carbon::parse($lastRecord->last_lti_date)->format('d.m.Y');
 
-        return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord'));
+        return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord', 'temperature'));
     }
 
     /**
