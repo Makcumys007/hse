@@ -23,18 +23,22 @@ class GateController extends Controller
         if ($response->failed()) {
             return response()->json(['error' => 'Failed to fetch temperature'], 500);
         }
-
-        // Получаем JSON-ответ и декодируем его
         $data = $response->json();
-
-        // Извлекаем значение температуры
         $temperature = $data['temperature'];
+
+        $response = Http::get('http://localhost:3000/speed-value');
+
+        if ($response->failed()) {
+            return response()->json(['error' => 'Failed to fetch temperature'], 500);
+        }
+        $data = $response->json();
+        $wind = $data['wind'];
 
         $currentDate = Carbon::now()->format('d.m.Y');
         $lastRecord = Gateboard::latest()->first();
         $last_lti_date = Carbon::parse($lastRecord->last_lti_date)->format('d.m.Y');
 
-        return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord', 'temperature'));
+        return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord', 'temperature', 'wind'));
     }
 
     /**

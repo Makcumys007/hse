@@ -79,7 +79,7 @@
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">СКОРОСТЬ ВЕТРА, м/с</h2></th>
-                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">{{ $wind }}</h1></td>                                                            
                                                           </tr>
                                                           
                                                         </tbody>
@@ -112,7 +112,7 @@
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">WIND SPEED, m/s</h2></th>
-                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                             
+                                                            <td><h1 class="text-danger data-size ">{{ $wind }}</h1></td>                                                             
                                                           </tr>
                                                           
                                                         </tbody>
@@ -144,7 +144,7 @@
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ЖЕЛДІҢ ЖЫЛДАМДЫҒЫ, m/s</h2></th>
-                                                            <td><h1 class="text-danger data-size ">...</h1></td>                                                             
+                                                            <td><h1 class="text-danger data-size ">{{ $wind }}</h1></td>                                                             
                                                           </tr>
                                                           
                                                         </tbody>
