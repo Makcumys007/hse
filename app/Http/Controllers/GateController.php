@@ -19,8 +19,9 @@ class GateController extends Controller
 
         $currentDate = Carbon::now()->format('d.m.Y');
         $lastRecord = Gateboard::latest()->first();
+        $last_lti_date = Carbon::parse($lastRecord->last_lti_date)->format('d.m.Y');
 
-        return view('gate', compact('currentDate', 'lastRecord'));
+        return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord'));
     }
 
     /**
