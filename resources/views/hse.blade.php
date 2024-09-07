@@ -150,7 +150,7 @@
 
   <div class="row">
           <div class="col-md-3">
-            <img  src="images/logo.png" class="img-fluid border-0" width="300">          
+            <img  src="{{ url('images/logo.png')}}" class="img-fluid border-0" width="300">          
           </div>
           <div class="col-md-6">
                   <div id="carouselExampleSlidesOnly" class="carousel slide h1title" data-ride="carousel">
@@ -168,7 +168,7 @@
                   </div>  
           </div>
           <div class="col-md-3">
-            <img  src="images/logo2.png" class="img-fluid border-0" width="500">          
+            <img  src="{{ url('images/logo2.png')}}" class="img-fluid border-0" width="500">          
           </div>
       
   </div>
@@ -277,28 +277,29 @@
         					<table>
         						<tr>
         							<td>
-        						<img src="weather/  echo $desc_icon;?>" height="30" title="  echo $now_desc;?>">
+                                        <!-- img for forecast -->
+        						<img src="" height="30" title="">
         							</td>
         							<td>
-        								 <img src="weather/icons8-thermometer-80.png" height="30" >
+        								 <img src="{{ url('images/weather/icons8-thermometer-80.png')}}" height="30" >
         							</td>
         							<td>
-        								<h1>... °C</h1>
+        								<h1><span id="temperature"></span> °C</h1>
         							</td>
         							<td>
-        								 <img src="weather/icons8-wind-80.png" height="30" >
+        								 <img src="{{ url('images/weather/icons8-wind-80.png')}}" height="30" >
         							</td>
         							<td>
-        								<h1>...</h1>
+        								<h1><span id="wind"></span></h1>
         							</td>
         							<td>
         								<h1>m/s</h1>
         							</td>
         							<td>
-        								 <img src="weather/icons8-wet-80.png" height="30" >
+        								 <img src="{{ url('images/weather/icons8-wet-80.png')}}" height="30" >
         							</td>
         							<td>
-        								<h1>  echo $humidity; ?></h1>
+        								<h1><span id="humidity"></h1>
         							</td>
         						</tr>
         					</table>
@@ -358,33 +359,21 @@
             autoScroll();
         });
 
-
-        function clearBrowserData() {
-    // Очистка localStorage и sessionStorage
-    localStorage.clear();
-    sessionStorage.clear();
-
-    // Функция для удаления всех файлов cookie
-    function deleteAllCookies() {
-        const cookies = document.cookie.split(";");
-
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i];
-            const eqPos = cookie.indexOf("=");
-            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+        async function fetchWeather() {
+            try {
+                const response = await fetch('http://localhost:3000/weather');
+                const data = await response.json();
+                document.getElementById('temperature').innerText = data.temperature;
+                document.getElementById('wind').innerText = data.wind;
+                document.getElementById('humidity').innerText = data.humidity;
+            } catch (error) {
+                console.error('Ошибка при получении данных о погоде:', error);
+            }
         }
-    }
 
-    // Удаление всех файлов cookie
-    deleteAllCookies();
-
-    // Обновление страницы
-    location.reload();
-}
-
-// Установка интервала для выполнения функции каждые 6 минут (360000 миллисекунд)
-setInterval(clearBrowserData, 195000);
+        // Вызов функции при загрузке страницы
+        window.onload = fetchWeather;
+      
 </script>
 
 </body>

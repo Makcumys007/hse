@@ -19,21 +19,7 @@ class GateController extends Controller
      */
     public function index() {
 
-        $response = Http::get('http://localhost:3000/temperature');
-
-        if ($response->failed()) {
-            return response()->json(['error' => 'Failed to fetch temperature'], 500);
-        }
-        $data = $response->json();
-        $temperature = $data['temperature'];
-
-        $response = Http::get('http://localhost:3000/speed-value');
-
-        if ($response->failed()) {
-            return response()->json(['error' => 'Failed to fetch temperature'], 500);
-        }
-        $data = $response->json();
-        $wind = $data['wind'];
+        
 
         $currentDate = Carbon::now()->format('d.m.Y');
         $lastRecord = Gateboard::latest()->first();
@@ -45,7 +31,7 @@ class GateController extends Controller
             $video = Video::where('dashboard_title', 'gate')->inRandomOrder()->first()->path;
         }
 
-        return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord', 'temperature', 'wind', 'video'));
+        return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord', 'video'));
     }
 
     /**
