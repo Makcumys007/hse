@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Refresh" content="600" />
+    <meta http-equiv="Refresh" content="{{ $lastRecord->refresh_page_time }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <!-- Подключение CSS -->
 	<link href="{{ url('bootstrap/css/style.css')}}" rel="stylesheet"> 

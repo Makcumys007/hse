@@ -54,8 +54,8 @@
                         </div>
 
                         <div>
-                            <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" for="refresh_page_time">Choose the value: <div id="tooltip" class="tooltip" style="display: none;"></div></label>
-                            <input class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full" type="range" id="refresh_page_time" name="refresh_page_time" min="60" max="3600">
+                            <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" for="refresh_page_time">Choose the value of time for refreshing page: <div id="tooltip" class="tooltip" style="display: none;"></div></label>
+                            <input class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full" value="{{ $lastRecord->refresh_page_time }}" type="range" id="refresh_page_time" name="refresh_page_time" min="60" max="3600">
                             
                         </div>
 

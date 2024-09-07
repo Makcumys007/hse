@@ -66,6 +66,7 @@ class GateController extends Controller
             'count_of_lti_year'             => 'required|integer',
             'running_string'                => 'required|string',
             'last_lti_date'                 => 'required|date',
+            'refresh_page_time'             => 'required|integer',
             
         ]);
         $result = new Gateboard(); 
@@ -74,6 +75,7 @@ class GateController extends Controller
         $result->last_lti_date = $validatedData['last_lti_date'];
         $result->user_id = Auth::user()->id;
         $result->running_string = $validatedData['running_string'];
+        $result->refresh_page_time = $validatedData['refresh_page_time'];
         $result->save();
 
 

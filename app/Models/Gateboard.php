@@ -16,5 +16,6 @@ class Gateboard extends Model
                             'count_of_lti_year',
                             'user_id',
                             'runnig_string',
-                            'last_lti_date'];
+                            'last_lti_date',
+                            'refresh_page_time'];
 }
