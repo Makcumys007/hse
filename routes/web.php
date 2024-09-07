@@ -7,7 +7,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth;
+
 
 Route::get('/', function () {
     if (Auth::check()) {

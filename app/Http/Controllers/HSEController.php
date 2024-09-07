@@ -10,6 +10,7 @@ use App\Models\Image;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\App;
 
 class HSEController extends Controller
 {
@@ -42,7 +43,7 @@ class HSEController extends Controller
 
     public function create()
     {
-        //     
+       
         $lastRecord = Hseboard::latest()->first();   
         return view('admin.hseboard', compact('lastRecord'));
     }

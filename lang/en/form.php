@@ -23,4 +23,7 @@ return [
     'show_additional_fields' => 'Show Additional Fields', 
     'gate_board_video' => 'Gate Board Video',
     'load_video_for_gateboard' => 'Load Video for Gateboard',
+    'refresh_page' => 'Choose the value of time for refreshing page',
+    'show_last_video' => 'Show last loaded video',
+    'show_random_video' => 'Show random video',
 ];
