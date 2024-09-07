@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hseboard;
 use App\Models\User;
+use App\Models\Video;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -14,7 +16,10 @@ class HSEController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
-       //
+        $currentDate = Carbon::now()->format('d.m.Y');
+        $lastRecord = Hseboard::latest()->first();
+        $video = Video::where('dashboard_title', 'hse')->latest()->first()->path;
+        return view('hse', compact('currentDate', 'lastRecord', 'video'));
     }
 
     /**

@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 
 Route::get('/gate', [GateController::class, 'index'])->name('gate');
-
+Route::get('/hse', [HSEController::class, 'index'])->name('hse');
 
 Route::get('/hseboard', [HSEController::class,'create'])->middleware(['auth', 'verified'])->name('hseboard');
 Route::post('/hseboard', [HSEController::class,'store'])->middleware(['auth', 'verified'])->name('hseboard');

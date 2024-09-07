@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,17 +183,17 @@
                                   <table>
                                           <tbody>
                                                   <tr>
-                                                          <td class="num_w"><h1><?php echo $lti;?></h1></td>
+                                                          <td class="num_w"><h1>   {{ $lastRecord->lost_time_injuries }}</h1></td>
                                                           <td class="num_w_p"><h4>Жоғалған уақыт жарақаты</h4></td>
-                                                          <td class="num_w"><h1><h1><?php echo $mtc;?></h1></td>
+                                                          <td class="num_w"><h1><h1>   {{ $lastRecord->medical_treatment }}</h1></td>
                                                           <td class="num_w_p"><h4>Медициналық көмек көрсету жағдай</h4></td>
-                                                          <td class="num_w"><h1><?php echo $fac;?></h1></td>
+                                                          <td class="num_w"><h1>   {{ $lastRecord->first_aid_cases }}</h1></td>
                                                           <td class="num_w_p"><h4>Алғашқы жәрдем көрсету жағдай</h4></td>
-                                                          <td class="num_g"><h1><?php echo $lti_fi;?></h1></td>
+                                                          <td class="num_g"><h1> {{ $lastRecord->lost_time_injuries_free_days }}</h1></td>
                                                           <td class="num_g_p"><h4>Еңбекке қабілеттілігін жоғалтпаусыз күндер</h4></td>
-                                                          <td class="num_g"><h1><?php echo $smf;?></h1></td>
+                                                          <td class="num_g"><h1> {{ $lastRecord->safe_men_hours }}</h1></td>
                                                           <td class="num_g_p"><h4>Қауіпсіз адам-сағат саны</h4></td>                
-                                                          <td class="num_w"><h1><?php echo $current_date;?></h1></td>
+                                                          <td class="num_w"><h1>   {{ $currentDate }}</h1></td>
                                                           <td class="num_w_p"><h4>Күні</h4></td>
                                                   </tr>
                                           </tbody>
@@ -205,17 +203,17 @@
                                   <table>
                                           <tbody>
                                                   <tr>
-                                                          <td class="num_w"><h1><?php echo $lti;?></h1></td>
+                                                          <td class="num_w"><h1>   {{ $lastRecord->lost_time_injuries }}</h1></td>
                                                           <td class="num_w_p"><h5>Травма с потерей рабочего времени</h5></td>
-                                                          <td class="num_w"><h1><h1><?php echo $mtc;?></h1></td>
+                                                          <td class="num_w"><h1><h1>   {{ $lastRecord->medical_treatment }}</h1></td>
                                                           <td class="num_w_p"><h5>Случай оказания медицинской помощи</h5></td>
-                                                          <td class="num_w"><h1><?php echo $fac;?></h1></td>
+                                                          <td class="num_w"><h1>   {{ $lastRecord->first_aid_cases }}</h1></td>
                                                           <td class="num_w_p"><h5>Оказания первой помощи</h5></td>
-                                                          <td class="num_g"><h1><?php echo $lti_fi;?></h1></td>
+                                                          <td class="num_g"><h1> {{ $lastRecord->lost_time_injuries_free_days }}</h1></td>
                                                           <td class="num_g_p"><h5>Дни без потери трудоспособности</h5></td>
-                                                          <td class="num_g"><h1><?php echo $smf;?></h1></td>
+                                                          <td class="num_g"><h1> {{ $lastRecord->safe_men_hours }}</h1></td>
                                                           <td class="num_g_p"><h5>Безопасное количество человеко-часов</h5></td>                
-                                                          <td class="num_w"><h1><?php echo $current_date;?></h1></td>
+                                                          <td class="num_w"><h1>   {{ $currentDate }}</h1></td>
                                                           <td class="num_w_p"><h5>Дата</h5></td>
                                                   </tr>
                                           </tbody>
@@ -225,17 +223,17 @@
                                   <table>
                                           <tbody>
                                                   <tr>
-                                                          <td class="num_w"><h1><?php echo $lti;?></h1></td>
+                                                          <td class="num_w"><h1>   {{ $lastRecord->lost_time_injuries }}</h1></td>
                                                           <td class="num_w_p"><h4>Lost time Injuries</h4></td>
-                                                          <td class="num_w"><h1><h1><?php echo $mtc;?></h1></td>
+                                                          <td class="num_w"><h1><h1>   {{ $lastRecord->medical_treatment }}</h1></td>
                                                           <td class="num_w_p"><h4>Medical Treatment</h4></td>
-                                                          <td class="num_w"><h1><?php echo $fac;?></h1></td>
+                                                          <td class="num_w"><h1>   {{ $lastRecord->first_aid_cases }}</h1></td>
                                                           <td class="num_w_p"><h4>First Aid Cases</h4></td>
-                                                          <td class="num_g"><h1><?php echo $lti_fi;?></h1></td>
+                                                          <td class="num_g"><h1> {{ $lastRecord->lost_time_injuries_free_days }}</h1></td>
                                                           <td class="num_g_p"><h4>Lost time Injuries Free Days</h4></td>
-                                                          <td class="num_g"><h1><?php echo $smf;?></h1></td>
+                                                          <td class="num_g"><h1> {{ $lastRecord->safe_men_hours }}</h1></td>
                                                           <td class="num_g_p"><h4>Safe men-hours</h4></td>                
-                                                          <td class="num_w"><h1><?php echo $current_date;?></h1></td>
+                                                          <td class="num_w"><h1>   {{ $currentDate }}</h1></td>
                                                           <td class="num_w_p"><h4>Date</h4></td>
                                                   </tr>
                                           </tbody>
@@ -259,7 +257,7 @@
        <!-- WWWWWW -->
        <div id="scrolling-block">
         <div id="scrolling-content">
-            <?php
+             
              foreach ( $carusel as $value) {
               echo "<div><img class=\"img-fluid\" width='870' src=\"";
               echo $value;
@@ -281,7 +279,7 @@
         					<table>
         						<tr>
         							<td>
-        						<img src="weather/<?php echo $desc_icon;?>" height="30" title="<?php echo $now_desc;?>">
+        						<img src="weather/  echo $desc_icon;?>" height="30" title="  echo $now_desc;?>">
         							</td>
         							<td>
         								 <img src="weather/icons8-thermometer-80.png" height="30" >
@@ -302,7 +300,7 @@
         								 <img src="weather/icons8-wet-80.png" height="30" >
         							</td>
         							<td>
-        								<h1><?php echo $humidity; ?></h1>
+        								<h1>  echo $humidity; ?></h1>
         							</td>
         						</tr>
         					</table>
@@ -315,7 +313,7 @@
         <!-- EEEEE --->
         <div class="row embed-responsive embed-responsive-16by9">
                   <video id="video" class="embed-responsive-item" controls loop autoplay muted>
-                    <source src="<?php echo $file_3; ?>" type="video/mp4">
+                    <source src="{{ Illuminate\Support\Facades\Storage::disk('public')->url($video) }}" type="video/mp4">
                   </video>
         </div>
         <!-- EEEEE --->
@@ -326,7 +324,7 @@
 
   <div class="row">       
         <div class="col ">        
-          <h2 id="anim"  class="mt-1 text-danger data-size"><?php echo $string; ?> </h2>       
+          <h2 id="anim"  class="mt-1 text-danger data-size">{{ $lastRecord->runnig_string }}</h2>       
         </div>
      
     </div>
