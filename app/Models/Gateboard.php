@@ -17,5 +17,6 @@ class Gateboard extends Model
                             'user_id',
                             'runnig_string',
                             'last_lti_date',
-                            'refresh_page_time'];
+                            'refresh_page_time',
+                            'video_option'];
 }

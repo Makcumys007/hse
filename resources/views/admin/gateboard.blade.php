@@ -61,18 +61,34 @@
                             
                         </div>
                         <div id="videoOption" class="hidden" >
+
+                        @if ($lastRecord->video_option == 0)
                             <div>
                                 <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >
-                                    <input type="radio" name="videoOption" value="latest" checked>
+                                    <input type="radio" name="video_option" value="0" checked>
                                     Show last loaded video
                                 </label>
                             </div>
                             <div class="mt-1">
                                 <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >
-                                    <input type="radio" name="videoOption" value="random">
+                                    <input type="radio" name="video_option" value="1">
                                     Show random video
                                 </label>
                             </div>
+                        @else
+                        <div>
+                                <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >
+                                    <input type="radio" name="video_option" value="0" >
+                                    Show last loaded video
+                                </label>
+                            </div>
+                            <div class="mt-1">
+                                <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >
+                                    <input type="radio" name="video_option" value="1" checked>
+                                    Show random video
+                                </label>
+                            </div>
+                        @endif                           
        
                         </div>
 

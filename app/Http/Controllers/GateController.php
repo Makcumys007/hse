@@ -39,9 +39,11 @@ class GateController extends Controller
         $lastRecord = Gateboard::latest()->first();
         $last_lti_date = Carbon::parse($lastRecord->last_lti_date)->format('d.m.Y');
 
-        $video = Video::where('dashboard_title', 'gate')->latest()->first()->path;
-
-        //$video = Video::where('dashboard_title', 'gate')->inRandomOrder()->first()->path;
+        if ($lastRecord->video_option == 0) {
+            $video = Video::where('dashboard_title', 'gate')->latest()->first()->path;
+        } else {
+            $video = Video::where('dashboard_title', 'gate')->inRandomOrder()->first()->path;
+        }
 
         return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord', 'temperature', 'wind', 'video'));
     }
@@ -69,6 +71,7 @@ class GateController extends Controller
             'running_string'                => 'required|string',
             'last_lti_date'                 => 'required|date',
             'refresh_page_time'             => 'required|integer',
+            'video_option'                   => 'required',
             
         ]);
         $result = new Gateboard(); 
@@ -78,6 +81,7 @@ class GateController extends Controller
         $result->user_id = Auth::user()->id;
         $result->running_string = $validatedData['running_string'];
         $result->refresh_page_time = $validatedData['refresh_page_time'];
+        $result->video_option = $validatedData['video_option'];
         $result->save();
 
 
