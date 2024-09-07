@@ -18,5 +18,7 @@ class Hseboard extends Model
                             'safe_men_hours',
                             'date',
                             'user_id',
-                            'runnig_string',];
+                            'runnig_string',
+                            'refresh_page_time',
+                            'video_option'];
 }

@@ -19,8 +19,12 @@ class HSEController extends Controller
     public function index() {
         $currentDate = Carbon::now()->format('d.m.Y');
         $lastRecord = Hseboard::latest()->first();
-        $video = Video::where('dashboard_title', 'hse')->latest()->first()->path;
         $images = Image::orderBy('created_at', 'desc')->take(5)->get();
+        if ($lastRecord->video_option == 0) {
+            $video = Video::where('dashboard_title', 'hse')->latest()->first()->path;
+        } else {
+            $video = Video::where('dashboard_title', 'hse')->inRandomOrder()->first()->path;
+        }
         return view('hse', compact('currentDate', 'lastRecord', 'video', 'images'));
     }
 
@@ -49,6 +53,8 @@ class HSEController extends Controller
             'lost_time_injuries_free_days'  => 'required|integer',
             'safe_men_hours'                => 'required|integer',
             'running_string'                => 'required|string',
+            'refresh_page_time'             => 'required|integer',
+            'video_option'                  => 'required',
         ]);
         $result = new Hseboard();
         $result->lost_time_injuries = $validatedData['lost_time_injuries'];
@@ -57,6 +63,8 @@ class HSEController extends Controller
         $result->lost_time_injuries_free_days = $validatedData['lost_time_injuries_free_days'];
         $result->safe_men_hours = $validatedData['safe_men_hours'];
         $result->running_string = $validatedData['running_string'];
+        $result->refresh_page_time = $validatedData['refresh_page_time'];
+        $result->video_option = $validatedData['video_option'];
         $result->user_id = Auth::user()->id;
         $result->save();
 

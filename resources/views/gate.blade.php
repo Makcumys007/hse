@@ -75,11 +75,11 @@
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ТЕМПЕРАТУРА, °С</h2></th>
-                                                            <td><h1 class="text-danger data-size "> </h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size "><span id="temperature"></span>  </h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">СКОРОСТЬ ВЕТРА, м/с</h2></th>
-                                                            <td><h1 class="text-danger data-size "> </h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size "><span id="wind"></span> </h1></td>                                                            
                                                           </tr>
                                                           
                                                         </tbody>
@@ -108,11 +108,11 @@
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">TEMPERATURE, °С</h2></th>
-                                                            <td><h1 class="text-danger data-size "> </h1></td>                                                              
+                                                            <td><h1 class="text-danger data-size "><span id="temperature"></span>  </h1></td>                                                              
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">WIND SPEED, m/s</h2></th>
-                                                            <td><h1 class="text-danger data-size "> </h1></td>                                                             
+                                                            <td><h1 class="text-danger data-size "> <span id="wind"></span></h1></td>                                                             
                                                           </tr>
                                                           
                                                         </tbody>
@@ -140,11 +140,11 @@
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ТЕМПЕРАТУРА, °С</h2></th>
-                                                            <td><h1 class="text-danger data-size ">  </h1></td>                                                              
+                                                            <td><h1 class="text-danger data-size "> <span id="temperature"></span>  </h1></td>                                                              
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ЖЕЛДІҢ ЖЫЛДАМДЫҒЫ, m/s</h2></th>
-                                                            <td><h1 class="text-danger data-size "> </h1></td>                                                             
+                                                            <td><h1 class="text-danger data-size "> <span id="wind"></span></h1></td>                                                             
                                                           </tr>
                                                           
                                                         </tbody>
@@ -254,6 +254,31 @@ addEvent(window, "load", function () {
     }
     
 });
+
+async function fetchWeather() {
+    try {
+        const response = await fetch('http://localhost:3000/weather');
+        const data = await response.json();
+        
+        document.querySelectorAll('#temperature').forEach(element => {
+            element.innerText = data.temperature;
+        });
+        
+        document.querySelectorAll('#wind').forEach(element => {
+            element.innerText = data.wind;
+        });
+        
+        document.querySelectorAll('#humidity').forEach(element => {
+            element.innerText = data.humidity;
+        });
+    } catch (error) {
+        console.error('Ошибка при получении данных о погоде:', error);
+    }
+}
+
+// Вызов функции при загрузке страницы
+window.onload = fetchWeather;
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

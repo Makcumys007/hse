@@ -54,7 +54,48 @@
 
                         <div>
                             <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >Running String</label>
-                                <textarea class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full" name="running_string" required="required">{{ $lastRecord->running_string ?? '' }}</textarea>            
+                                <textarea class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full" name="running_string" required="required">{{ $lastRecord->running_string ?? '' }}</textarea>     
+                        </div>
+
+                        <div>
+                            <a href="#" id="toggleLink">Show Additional Fields</a>
+                        </div>
+                      
+                        <div id="refresh_page_time" class="hidden">
+                            <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" for="refresh_page_time">Choose the value of time for refreshing page: <div id="tooltip" class="tooltip" style="display: none;"></div></label>
+                            <input class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full" value="{{ $lastRecord->refresh_page_time }}" type="range"  name="refresh_page_time" min="60" max="3600">
+                            
+                        </div>
+                        <div id="videoOption" class="hidden" >
+
+                        @if ($lastRecord->video_option == 0)
+                            <div>
+                                <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >
+                                    <input type="radio" name="video_option" value="0" checked>
+                                    Show last loaded video
+                                </label>
+                            </div>
+                            <div class="mt-1">
+                                <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >
+                                    <input type="radio" name="video_option" value="1">
+                                    Show random video
+                                </label>
+                            </div>
+                        @else
+                        <div>
+                                <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >
+                                    <input type="radio" name="video_option" value="0" >
+                                    Show last loaded video
+                                </label>
+                            </div>
+                            <div class="mt-1">
+                                <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" >
+                                    <input type="radio" name="video_option" value="1" checked>
+                                    Show random video
+                                </label>
+                            </div>
+                        @endif                           
+       
                         </div>
 
 
@@ -167,6 +208,21 @@
             }
         }, 5000); // 5000 миллисекунд = 5 секунд
     });
+
+
+  
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('toggleLink').addEventListener('click', function(event) {
+                event.preventDefault();
+                var refresh_page_time = document.getElementById('refresh_page_time');
+                var videoOption = document.getElementById('videoOption');
+
+                refresh_page_time.classList.toggle('hidden');
+                videoOption.classList.toggle('hidden');
+               
+            });
+        });
 </script>
 
 
