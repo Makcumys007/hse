@@ -23,6 +23,11 @@
                                 {{ session('success') }}
                             </div>
                         @endif
+                        @if (session('error'))
+                            <div id="danger-message" class="mb-4 font-medium text-sm text-red-600 dark:text-red-400">
+                                {{ session('error') }}
+                            </div>
+                        @endif
 
                     </header>
                     <form method="post" action="{{route('gateboard') }}" class="mt-6 space-y-6">  
@@ -112,16 +117,7 @@
                         </h2>
 
                        
-                        @if (session('video-success'))
-                            <div id="success-message" class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                                {{ session('video-success') }}
-                            </div>
-                        @endif
-                        @if (session('video-error'))
-                            <div id="danger-message" class="mb-4 font-medium text-sm text-red-600 dark:text-red-400">
-                                {{ session('video-error') }}
-                            </div>
-                        @endif
+                       
 
                     </header>
                     <form method="post" action="{{ route('store.video') }}" enctype="multipart/form-data" class="mt-6 space-y-6">  
@@ -161,7 +157,7 @@
             if (successMessage) {
                 successMessage.style.display = 'none';
             }
-        }, 5000); // 5000 миллисекунд = 5 секунд
+        }, 8000); // 5000 миллисекунд = 5 секунд
     });
 
     const refresh_page_time = document.getElementById('refresh_page_time');

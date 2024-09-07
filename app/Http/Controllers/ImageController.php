@@ -40,11 +40,11 @@ class ImageController extends Controller
             $image->save();
  
             return back()
-            ->with('image-success','Image has been successfully uploaded.');
+            ->with('success','Image has been successfully uploaded.');
         }
  
         return back()
-            ->with('image-error','Unexpected error occured');
+            ->with('error','Unexpected error occured');
     }
 
     /**

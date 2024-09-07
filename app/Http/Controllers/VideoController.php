@@ -50,11 +50,11 @@ class VideoController extends Controller
             $video->save();
  
             return back()
-            ->with('video-success','Video has been successfully uploaded.');
+            ->with('success','Video has been successfully uploaded.');
         }
  
         return back()
-            ->with('video-error','Unexpected error occured');
+            ->with('error','Unexpected error occured');
     }
 
     /**
