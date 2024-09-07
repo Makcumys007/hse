@@ -24,9 +24,13 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        @if (session('error'))
-                            <div id="danger-message" class="mb-4 font-medium text-sm text-red-600 dark:text-red-400">
-                                {{ session('error') }}
+                        @if ($errors->any())
+                            <div class="mb-4 font-medium text-sm text-red-600 dark:text-red-400">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
                         @endif
 

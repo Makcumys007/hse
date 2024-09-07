@@ -23,9 +23,15 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        @if (session('error'))
-                            <div id="danger-message" class="mb-4 font-medium text-sm text-red-600 dark:text-red-400">
-                                {{ session('error') }}
+                       
+
+                        @if ($errors->any())
+                            <div class="mb-4 font-medium text-sm text-red-600 dark:text-red-400">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
                         @endif
 
@@ -159,6 +165,8 @@
             }
         }, 8000); // 5000 миллисекунд = 5 секунд
     });
+
+    
 
     const refresh_page_time = document.getElementById('refresh_page_time');
         const tooltip = document.getElementById('tooltip');

@@ -29,7 +29,7 @@ class VideoController extends Controller
    {
         $validate = $request->validate([
             //   'title' => 'required|string|max:255',
-            'video' => 'required|file|mimetypes:video/mp4',
+            'video' => 'required|file|mimes:mp4',
             'dashboard_title' => 'required',
         ]);
    
