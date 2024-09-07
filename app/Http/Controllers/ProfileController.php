@@ -9,9 +9,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Http\Middleware\LocaleMiddleware;
+use Illuminate\Routing\Controller as BaseController;
 
-class ProfileController extends Controller
+class ProfileController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware(LocaleMiddleware::class);
+    }
     /**
      * Display the user's profile form.
      */
