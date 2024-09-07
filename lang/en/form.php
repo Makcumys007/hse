@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'hseboard_information' => 'HSEBoard Information',
+    'update_information' => 'Update Information',
+    'lost_time_injuries' => 'Lost Time Injuries',
+    'medical_treatment' => 'Medical Treatment',
+    'first_aid_cases' => 'First Aid Cases',
+    'lost_time_injuries_free_days' => 'Lost Time Injuries Free Days',
+    'safe_men_hours' => 'Safe Man-Hours',
+    'show_additional_fields' => 'Show Additional Fields',
+    'save' => 'Save',
+    'hseboard_video' => 'HSEBoard Video',
+    'load_video_for_hseboard' => 'Load video for HSEBoard',
+    'hseboard_image' => 'HSEBoard Images',
+    'load_image_for_hseboard' => 'Load image for HSEBoard',
+    'gate_board_information' => 'Gate Board Information',
+    'update_information' => 'Update Information',
+    'last_lti_date' => 'Last LTI Date',
+    'count_of_lti_last_year' => 'Count of LTI of Last Year',
+    'lost_time_injuries_free_days' => 'Lost Time Injuries Free Days',
+    'running_string' => 'Running String',
+    'show_additional_fields' => 'Show Additional Fields', 
+    'gate_board_video' => 'Gate Board Video',
+    'load_video_for_gateboard' => 'Load Video for Gateboard',
+];
