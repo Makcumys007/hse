@@ -21,9 +21,16 @@ class HSEController extends Controller
         $lastRecord = Hseboard::latest()->first();
         $images = Image::orderBy('created_at', 'desc')->take(5)->get();
         if ($lastRecord->video_option == 0) {
-            $video = Video::where('dashboard_title', 'hse')->latest()->first()->path;
+            $videoQuery = Video::where('dashboard_title', 'hse')->latest();
         } else {
-            $video = Video::where('dashboard_title', 'hse')->inRandomOrder()->first()->path;
+            $videoQuery = Video::where('dashboard_title', 'hse')->inRandomOrder();
+        }
+
+        if ($videoQuery->exists()) {
+            $video = $videoQuery->first()->path;
+        } else {
+            // Обработка случая, когда видео не найдено
+            $video = null;
         }
         return view('hse', compact('currentDate', 'lastRecord', 'video', 'images'));
     }

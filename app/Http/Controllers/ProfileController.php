@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,20 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+
+    public function updateLocale(Request $request)
+    {
+        $request->validate([
+            'locale' => 'required|in:en,ru',
+        ]);
+
+        $user = User::find(Auth::user()->id);
+        $user->locale = $request->locale;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Локаль обновлена.');
+    }
+
 
     /**
      * Update the user's profile information.

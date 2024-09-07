@@ -23,15 +23,20 @@ class GateController extends Controller
 
         $currentDate = Carbon::now()->format('d.m.Y');
         $lastRecord = Gateboard::latest()->first();
-        $last_lti_date = Carbon::parse($lastRecord->last_lti_date)->format('d.m.Y');
 
         if ($lastRecord->video_option == 0) {
-            $video = Video::where('dashboard_title', 'gate')->latest()->first()->path;
+            $videoQuery = Video::where('dashboard_title', 'gate')->latest();
         } else {
-            $video = Video::where('dashboard_title', 'gate')->inRandomOrder()->first()->path;
+            $videoQuery = Video::where('dashboard_title', 'gate')->inRandomOrder();
+        }
+        if ($videoQuery->exists()) {
+            $video = $videoQuery->first()->path;
+        } else {
+            // Обработка случая, когда видео не найдено
+            $video = null;
         }
 
-        return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord', 'video'));
+        return view('gate', compact('currentDate', 'lastRecord', 'video'));
     }
 
     /**

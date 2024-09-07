@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Refresh" content="{{ $lastRecord->refresh_page_time }}" />
+    <meta http-equiv="Refresh" content="{{ $lastRecord->refresh_page_time ?? '' }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <!-- Подключение CSS -->
 	<link href="{{ url('bootstrap/css/style.css')}}" rel="stylesheet"> 
@@ -63,15 +63,19 @@
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ДАТА ПОСЛЕДНЕГО НЕСЧАТНОГО СЛУЧАЯ</h2></th>
-                                                            <td><h1 class="text-danger data-size  data-size ">{{ $last_lti_date }}</h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size  data-size ">@if($lastRecord->last_lti_date)
+    {{ \Carbon\Carbon::parse($lastRecord->last_lti_date)->format('d.m.Y') }}
+@else
+    {{ '' }}
+@endif</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">КОЛИЧЕСТВО ДНЕЙ БЕЗ НЕСЧАСТНОГО СЛУЧАЯ</h2></th>
-                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->lost_time_injuries_free_days }}</h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->lost_time_injuries_free_days ?? '' }}</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">КОЛИЧЕСТВО НЕСЧАСТНЫХ СЛУЧАЕВ В ЭТОМ ГОДУ</h2></th>
-                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->count_of_lti_year }}</h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->count_of_lti_year ?? '' }}</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ТЕМПЕРАТУРА, °С</h2></th>
@@ -96,15 +100,19 @@
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">LAST LTI DATE</h2></th>
-                                                            <td><h1 class="text-danger data-size  data-size ">{{ $last_lti_date }}</h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size  data-size ">@if($lastRecord->last_lti_date)
+    {{ \Carbon\Carbon::parse($lastRecord->last_lti_date)->format('d.m.Y') }}
+@else
+    {{ '' }}
+@endif</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">NUMBER OF DAYS WITHOUT LTI</h2></th>
-                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->lost_time_injuries_free_days }}</h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->lost_time_injuries_free_days ?? '' }}</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">NUMBER OF LTI THIS YEAR</h2></th>
-                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->count_of_lti_year }}</h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->count_of_lti_year ?? '' }}</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">TEMPERATURE, °С</h2></th>
@@ -128,15 +136,19 @@
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">СОҢҒЫ ЖАЗАТАЙЫМ ОҚИҒА КҮНІ</h2></th>
-                                                            <td><h1 class="text-danger data-size  data-size ">{{ $last_lti_date }}</h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size  data-size ">@if($lastRecord->last_lti_date)
+    {{ \Carbon\Carbon::parse($lastRecord->last_lti_date)->format('d.m.Y') }}
+@else
+    {{ '' }}
+@endif</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ЖАЗАТАЙЫМ ОҚИҒАСЫЗ КҮНДЕР САНЫ</h2></th>
-                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->lost_time_injuries_free_days }}</h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->lost_time_injuries_free_days ?? '' }}</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ОСЫ ЖЫЛЫҒЫ ЖАЗАТАЙЫМ ОҚИҒАЛАР САНЫ</h2></th>
-                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->count_of_lti_year }}</h1></td>                                                            
+                                                            <td><h1 class="text-danger data-size ">{{ $lastRecord->count_of_lti_year ?? '' }}</h1></td>                                                            
                                                           </tr>
                                                           <tr>
                                                             <th scope="row"><h2 class="mt-2 text-white">ТЕМПЕРАТУРА, °С</h2></th>
@@ -183,7 +195,7 @@
     </div>
     <div class="row">       
         <div class="col ">        
-          <h1 id="anim"  class="mt-1 text-danger "> {{ $lastRecord->running_string }} </h1>       
+          <h1 id="anim"  class="mt-1 text-danger "> {{ $lastRecord->running_string ?? '' }} </h1>       
         </div>
      
     </div>
