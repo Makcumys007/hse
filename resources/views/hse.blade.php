@@ -322,7 +322,7 @@
 
   <div class="row">       
         <div class="col ">        
-          <h2 id="anim"  class="mt-1 text-danger data-size">{{ $lastRecord->runnig_string }}</h2>       
+          <h2 id="anim"  class="mt-1 text-danger data-size">{{ $lastRecord->running_string }}</h2>       
         </div>
      
     </div>
