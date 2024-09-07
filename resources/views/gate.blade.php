@@ -41,7 +41,7 @@
   <div class="container mt-5 border border-dark">
     <div class="row">
         <div class="col-md-3">
-          <img  src="images/logoKPP.png" class="img-fluid border-0" width="250">          
+          <img  src="{{ url('images/logoKPP.png')}}" class="img-fluid border-0" width="250">          
         </div>
         <div class="col-md-9">
           <br>
