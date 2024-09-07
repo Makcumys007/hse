@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="Refresh" content="{{ $lastRecord->refresh_page_time ?? '' }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
 	    <!-- Подключение CSS -->
 	<link href="{{ url('bootstrap/css/style.css')}}" rel="stylesheet"> 
 	<!-- Подключение JS (необязательно, если вы не используете компоненты, требующие JavaScript) 
