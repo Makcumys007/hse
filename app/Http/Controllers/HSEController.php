@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Hseboard;
 use App\Models\User;
 use App\Models\Video;
+use App\Models\Image;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,8 @@ class HSEController extends Controller
         $currentDate = Carbon::now()->format('d.m.Y');
         $lastRecord = Hseboard::latest()->first();
         $video = Video::where('dashboard_title', 'hse')->latest()->first()->path;
-        return view('hse', compact('currentDate', 'lastRecord', 'video'));
+        $images = Image::orderBy('created_at', 'desc')->take(5)->get();
+        return view('hse', compact('currentDate', 'lastRecord', 'video', 'images'));
     }
 
     /**

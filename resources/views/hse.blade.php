@@ -258,13 +258,11 @@
        <div id="scrolling-block">
         <div id="scrolling-content">
              
-             foreach ( $carusel as $value) {
-              echo "<div><img class=\"img-fluid\" width='870' src=\"";
-              echo $value;
-              echo "\"></div>";
-          }  
-          $carusel = array();
-          ?>  
+            
+
+          @foreach ($images as $image)
+                <img class="img-fluid" width='870'src="{{ asset('storage/' . $image->path) }}" alt="Image">
+          @endforeach
         </div>
         </div>
         <!-- WWWWWW -->
