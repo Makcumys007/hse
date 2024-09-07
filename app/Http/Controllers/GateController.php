@@ -41,6 +41,8 @@ class GateController extends Controller
 
         $video = Video::where('dashboard_title', 'gate')->latest()->first()->path;
 
+        //$video = Video::where('dashboard_title', 'gate')->inRandomOrder()->first()->path;
+
         return view('gate', compact('currentDate', 'last_lti_date', 'lastRecord', 'temperature', 'wind', 'video'));
     }
 

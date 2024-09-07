@@ -20,3 +20,7 @@
     transform: translateY(-100%);
     white-space: nowrap;
 }
+
+.hidden {
+    display: none;
+}
