@@ -17,3 +17,10 @@ php artisan storage:link
 
 chmod -R 755 storage
 chmod -R 755 public/storage
+
+------------------------------
+Log of visiters of pages
+php artisan make:migration create_visits_table --create=visits
+php artisan make:model Visit
+php artisan make:middleware LogVisit
+
