@@ -63,7 +63,7 @@
                         data.forEach(function(item) {
                             rows += '<tr>';
                             rows += '<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">' + item.hostname + '</td>';
-                            rows += '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">' + item.url + '</td>';
+                            rows += '<td class="px-6 py-4 whitespace-nowrap text-sm text-black-500 dark:text-gray-300">' + item.url + '</td>';
                             rows += '<td class="px-6 py-4 whitespace-nowrap text-sm text-black-500 dark:text-gray-300">' + item.last_visit + '</td>';
                             rows += '</tr>';
                         });
