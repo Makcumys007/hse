@@ -6,6 +6,7 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers;
+use App\Http\Controllers\VisitController;
 use App\Http\Middleware\LocaleMiddleware;
 use App\Http\Middleware\LogVisit;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,8 @@ Route::middleware([LogVisit::class])->group(function () {
 
 
 Route::middleware([LocaleMiddleware::class])->group(function () {
+    Route::get('/clients', [VisitController::class,'index'])->middleware(['auth', 'verified'])->name('clients');
+    
     Route::get('/hseboard', [HSEController::class,'create'])->middleware(['auth', 'verified'])->name('hseboard');
     Route::post('/hseboard', [HSEController::class,'store'])->middleware(['auth', 'verified'])->name('hseboard');
 

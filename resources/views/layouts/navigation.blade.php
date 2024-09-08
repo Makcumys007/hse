@@ -16,7 +16,7 @@
                         {{ __('hseboard') }}
                     </x-nav-link>
                 </div>
-                <!-- Logo -->
+                <!-- gateboard -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('gateboard') }}">
                     </a>
@@ -26,6 +26,18 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('gateboard')" :active="request()->routeIs('gateboard')">
                         {{ __('gateboard') }}
+                    </x-nav-link>
+                </div>
+                <!-- Clients -->
+                <div class="shrink-0 flex items-center">
+                    <a href="{{ route('clients') }}">
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('clients')" :active="request()->routeIs('clients')">
+                        {{ __('clients') }}
                     </x-nav-link>
                 </div>
             </div>
