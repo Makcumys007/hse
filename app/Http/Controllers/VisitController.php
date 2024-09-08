@@ -22,6 +22,15 @@ class VisitController extends Controller
         return  view('admin.clients', compact('visits', 'hseboard', 'gateboard'));
     }
 
+    public function getData()
+{
+    $data = Visit::select('hostname', 'url', DB::raw('MAX(visited_at) as last_visit'))
+    ->groupBy('hostname', 'url')
+    ->get();
+
+    return response()->json($data);
+}
+
     /**
      * Show the form for creating a new resource.
      */

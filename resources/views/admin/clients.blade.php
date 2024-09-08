@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
-                            @foreach ($visits as $visit)
+                    <!--        @foreach ($visits as $visit)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                                         {{ $visit->hostname }}
@@ -38,7 +38,7 @@
                                         {{ $visit->last_visit }}
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endforeach -->
                         </tbody>
                     </table>
                 </section>
@@ -52,36 +52,68 @@
 </x-app-layout>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-// Предполагаем, что ваша таблица имеет id 'visits'
-var hiddenSeconds1 = $('#hseboard').data('seconds'); // Получаем значение первого скрытого поля
-var hiddenSeconds2 = $('#gateboard').data('seconds');; // Получаем значение второго скрытого поля
-var targetDate = new Date(); // Используем текущее время
+        $(document).ready(function() {
+            // Функция для загрузки данных
+            function loadData() {
+                $.ajax({
+                    url: '/get-data', // URL для получения данных
+                    method: 'GET',
+                    success: function(data) {
+                        var rows = '';
+                        data.forEach(function(item) {
+                            rows += '<tr>';
+                            rows += '<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">' + item.hostname + '</td>';
+                            rows += '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">' + item.url + '</td>';
+                            rows += '<td class="px-6 py-4 whitespace-nowrap text-sm text-black-500 dark:text-gray-300">' + item.last_visit + '</td>';
+                            rows += '</tr>';
+                        });
+                        $('#visits tbody').html(rows);
+                        updateRowColors(); // Обновляем цвета строк после загрузки данных
+                    },
+                    error: function() {
+                        alert('Ошибка при загрузке данных');
+                    }
+                });
+            }
 
-$('#visits tr').each(function(index) {
-    if (index === 0) return; // Пропускаем заголовок таблицы
+            // Функция для обновления цветов строк
+            function updateRowColors() {
+                var hiddenSeconds1 = $('#hseboard').data('seconds'); // Получаем значение первого скрытого поля
+                var hiddenSeconds2 = $('#gateboard').data('seconds'); // Получаем значение второго скрытого поля
+                var targetDate = new Date(); // Используем текущее время
 
-    var urlCellText = $(this).find('td').eq(1).text(); // Предполагаем, что URL во втором столбце
-    var dateTimeCellText = $(this).find('td').eq(2).text(); // Предполагаем, что дата и время в третьем столбце
-    var dateTimeCellValue = new Date(dateTimeCellText);
+                $('#visits tr').each(function(index) {
+                    if (index === 0) return; // Пропускаем заголовок таблицы
 
-    // Определяем, сколько секунд отнимать в зависимости от URL
-    var secondsToSubtract = 0;
-    if (urlCellText.includes('hse')) {
-        secondsToSubtract = hiddenSeconds1;
-    } else if (urlCellText.includes('gate')) {
-        secondsToSubtract = hiddenSeconds2;
-    }
+                    var urlCellText = $(this).find('td').eq(1).text(); // Предполагаем, что URL во втором столбце
+                    var dateTimeCellText = $(this).find('td').eq(2).text(); // Предполагаем, что дата и время в третьем столбце
+                    var dateTimeCellValue = new Date(dateTimeCellText);
 
-    // Отнимаем секунды от текущего времени
-    var adjustedTargetDate = new Date(targetDate);
-    adjustedTargetDate.setSeconds(adjustedTargetDate.getSeconds() - secondsToSubtract);
+                    // Определяем, сколько секунд отнимать в зависимости от URL
+                    var secondsToSubtract = 0;
+                    if (urlCellText.includes('hse')) {
+                        secondsToSubtract = hiddenSeconds1;
+                    } else if (urlCellText.includes('gate')) {
+                        secondsToSubtract = hiddenSeconds2;
+                    }
 
-    // Сравниваем с целевой датой
-    if (dateTimeCellValue < adjustedTargetDate) {
-        $(this).css('background-color', 'red');
-    }
-});
+                    // Отнимаем секунды от текущего времени
+                    var adjustedTargetDate = new Date(targetDate);
+                    adjustedTargetDate.setSeconds(adjustedTargetDate.getSeconds() - secondsToSubtract);
+
+                    // Сравниваем с целевой датой
+                    if (dateTimeCellValue < adjustedTargetDate) {
+                        $(this).css('background-color', 'red');
+                    }
+                });
+            }
+
+            // Загрузка данных при загрузке страницы
+            loadData();
+
+            // Обновление данных каждые 60 секунд
+            setInterval(loadData, 60000); // 60000 миллисекунд = 60 секунд
+        });
 </script>
-
 
 
