@@ -73,7 +73,7 @@
                       
                         <div id="refresh_page_time" class="hidden">
                             <label class="block font-medium text-sm text-gray-700 dark:text-gray-300" for="refresh_page_time">
-                                {{__('form.refresh_page')}}: <div id="tooltip" class="tooltip" style="display: none;"></div></label>
+                                {{__('form.refresh_page')}}: <span id="my_tooltip"  style="display: none;"></span></label>
                             <input class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full" value="{{ $lastRecord->refresh_page_time ?? '' }}" type="range"  name="refresh_page_time" min="60" max="3600">
                             
                         </div>
@@ -219,4 +219,26 @@
         });
 </script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        $(document).ready(function() {
+            var $refreshPageTime = $('input[name="refresh_page_time"]');
+            var $tooltip = $('#my_tooltip');
+
+            $refreshPageTime.on('input', function() {
+                $tooltip.show();
+                $tooltip.text($refreshPageTime.val());
+                var rect = $refreshPageTime[0].getBoundingClientRect();
+                var tooltipRect = $tooltip[0].getBoundingClientRect();
+                $tooltip.css({
+                    left: rect.left + ($refreshPageTime.val() - $refreshPageTime.attr('min')) / ($refreshPageTime.attr('max') - $refreshPageTime.attr('min')) * rect.width - tooltipRect.width / 2 + 'px',
+                    top: rect.top - tooltipRect.height - 10 + 'px'
+                });
+            });
+
+            $refreshPageTime.on('blur', function() {
+                $tooltip.hide();
+            });
+        });
+    </script>
 

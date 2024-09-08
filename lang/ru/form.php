@@ -22,7 +22,7 @@ return [
     'show_additional_fields' => 'Показать дополнительные поля',
     'gate_board_video' => 'Видео Gate Board',
     'load_video_for_gateboard' => 'Загрузить видео для Gate Board',
-    'refresh_page' => 'Выберите значение времени для обновления страницы:',
+    'refresh_page' => 'Выберите значение времени для обновления страницы',
     'show_last_video' => 'Показать последнее загруженное видео',
     'show_random_video' => 'Показать случайное видео',
     'profile_information' => 'Информация о профиле',
