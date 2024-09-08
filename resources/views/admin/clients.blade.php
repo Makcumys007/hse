@@ -11,7 +11,7 @@
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <section>
-                    <table class="min-w-full divide-y divide-gray-200">
+                    <table id="visits" class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50 dark:bg-gray-700">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
@@ -34,7 +34,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                                         {{ $visit->url }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-black-500 dark:text-gray-300">
                                         {{ $visit->last_visit }}
                                     </td>
                                 </tr>
@@ -47,11 +47,41 @@
     </div>
 </div>
 
-
+<div id="hseboard" data-seconds="{{ $hseboard->refresh_page_time ?? '60' }}"></div>
+<div id="gateboard" data-seconds="{{ $gateboard->refresh_page_time ?? '60' }}"></div>
 </x-app-layout>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    
+// Предполагаем, что ваша таблица имеет id 'visits'
+var hiddenSeconds1 = $('#hseboard').data('seconds'); // Получаем значение первого скрытого поля
+var hiddenSeconds2 = $('#gateboard').data('seconds');; // Получаем значение второго скрытого поля
+var targetDate = new Date(); // Используем текущее время
+
+$('#visits tr').each(function(index) {
+    if (index === 0) return; // Пропускаем заголовок таблицы
+
+    var urlCellText = $(this).find('td').eq(1).text(); // Предполагаем, что URL во втором столбце
+    var dateTimeCellText = $(this).find('td').eq(2).text(); // Предполагаем, что дата и время в третьем столбце
+    var dateTimeCellValue = new Date(dateTimeCellText);
+
+    // Определяем, сколько секунд отнимать в зависимости от URL
+    var secondsToSubtract = 0;
+    if (urlCellText.includes('hse')) {
+        secondsToSubtract = hiddenSeconds1;
+    } else if (urlCellText.includes('gate')) {
+        secondsToSubtract = hiddenSeconds2;
+    }
+
+    // Отнимаем секунды от текущего времени
+    var adjustedTargetDate = new Date(targetDate);
+    adjustedTargetDate.setSeconds(adjustedTargetDate.getSeconds() - secondsToSubtract);
+
+    // Сравниваем с целевой датой
+    if (dateTimeCellValue < adjustedTargetDate) {
+        $(this).css('background-color', 'red');
+    }
+});
 </script>
+
 
 

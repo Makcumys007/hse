@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Hseboard;
+use App\Models\Gateboard;
 class VisitController extends Controller
 {
     /**
@@ -13,10 +14,12 @@ class VisitController extends Controller
     public function index()
     {
         //
+        $hseboard = Hseboard::latest()->first(); 
+        $gateboard = Gateboard::latest()->first();  
         $visits = Visit::select('hostname', 'url', DB::raw('MAX(visited_at) as last_visit'))
                ->groupBy('hostname', 'url')
                ->get();
-        return  view('admin.clients', compact('visits'));
+        return  view('admin.clients', compact('visits', 'hseboard', 'gateboard'));
     }
 
     /**
