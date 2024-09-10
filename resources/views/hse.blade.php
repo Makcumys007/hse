@@ -8,6 +8,8 @@
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
 	    <!-- Подключение CSS -->
 	<link href="{{ url('bootstrap/css/style.css')}}" rel="stylesheet"> 
+  <link href="{{ url('css/snow.css')}}" rel="stylesheet"> 
+  <link href="{{ url('css/rain.css')}}" rel="stylesheet"> 
 	<!-- Подключение JS (необязательно, если вы не используете компоненты, требующие JavaScript) 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> -->
   <style>
@@ -135,7 +137,7 @@
   border: #024779 solid 5px;
   background-color: #FFFFFF; 
 }
-    
+
 </style>
 
 
@@ -146,6 +148,9 @@
     <title>KAZ MINERALS BOZSHAKOL LLC</title>
 </head>
 <body id="bg-black">
+  <div>
+<!-- <div class="rain"> -->
+ <!-- <div id="snow-container"> -->
     <!-- Здесь вы можете добавить свой контент -->
 <div class="container mt-3 ">
     <!-- Row 1 -->
@@ -377,6 +382,8 @@
         window.onload = fetchWeather;
       
 </script>
-
+<script src="{{ url('js/snow.js')}}"></script>
+<script src="{{ url('js/rain.js')}}"></script>
+</div> 
 </body>
 </html>
