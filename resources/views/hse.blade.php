@@ -319,7 +319,7 @@
         <!-- EEEEE --->
         <div class="row embed-responsive embed-responsive-16by9">
                   <video id="video" class="embed-responsive-item" controls loop autoplay muted>
-                    <source src="{{ Illuminate\Support\Facades\Storage::disk('public')->url($video) }}" type="video/mp4">
+                    <source src="{{ asset('storage/' . $video) }}" type="video/mp4">
                   </video>
         </div>
         <!-- EEEEE --->
@@ -368,7 +368,7 @@
 
         async function fetchWeather() {
             try {
-                const response = await fetch('http://localhost:3000/weather');
+                const response = await fetch('http://10.34.3.221:3000/weather');
                 const data = await response.json();
                 document.getElementById('temperature').innerText = data.temperature;
                 document.getElementById('wind').innerText = data.wind;
