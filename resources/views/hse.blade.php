@@ -384,8 +384,7 @@
       
 </script>
 <script>
-function clearBrowserData() {
-    // Очистка localStorage и sessionStorage
+
     localStorage.clear();
     sessionStorage.clear();
 
@@ -404,12 +403,8 @@ function clearBrowserData() {
     // Удаление всех файлов cookie
     deleteAllCookies();
 
-    // Обновление страницы
-    location.reload();
-}
 
-// Установка интервала для выполнения функции каждые 6 минут (360000 миллисекунд)
-setInterval(clearBrowserData, {{ $lastRecord->refresh_page_time }});
+
 </script>
 <script src="{{ url('js/snow.js')}}"></script>
 <script src="{{ url('js/rain.js')}}"></script>
