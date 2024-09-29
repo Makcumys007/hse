@@ -152,7 +152,7 @@
 <!-- <div class="rain"> -->
  <!-- <div id="snow-container"> -->
     <!-- Здесь вы можете добавить свой контент -->
-<div class="container mt-3 ">
+<div class="container mt-5 ">
     <!-- Row 1 -->
 
   <div class="row">
