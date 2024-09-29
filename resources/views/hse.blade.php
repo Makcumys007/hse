@@ -383,7 +383,11 @@
         
       
 </script>
-
+<script>
+    setTimeout(function(){
+        location.reload();
+    }, {{ $lastRecord->refresh_page_time }} * 1000);
+</script>
 <script src="{{ url('js/snow.js')}}"></script>
 <script src="{{ url('js/rain.js')}}"></script>
 </div> 
