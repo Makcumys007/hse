@@ -384,9 +384,35 @@
       
 </script>
 <script>
-    setTimeout(function(){
-        location.reload();
-    }, {{ $lastRecord->refresh_page_time }} * 1000);
+    
+
+    function clearBrowserData() {
+    // Очистка localStorage и sessionStorage
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // Функция для удаления всех файлов cookie
+    function deleteAllCookies() {
+        const cookies = document.cookie.split(";");
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf("=");
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+        }
+    }
+
+    // Удаление всех файлов cookie
+    deleteAllCookies();
+
+    // Обновление страницы
+    location.reload();
+}
+
+// Установка интервала для выполнения функции каждые 6 минут (360000 миллисекунд)
+setInterval(clearBrowserData, {{ $lastRecord->refresh_page_time }} * 1000);
+
 </script>
 <script src="{{ url('js/snow.js')}}"></script>
 <script src="{{ url('js/rain.js')}}"></script>
