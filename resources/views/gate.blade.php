@@ -5,7 +5,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Refresh" content="{{ $lastRecord->refresh_page_time ?? '' }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
 	    <!-- Подключение CSS -->
@@ -291,6 +290,37 @@ async function fetchWeather() {
 
 // Вызов функции при загрузке страницы
 window.onload = fetchWeather;
+
+</script>
+    <script>
+    
+
+    function clearBrowserData() {
+    // Очистка localStorage и sessionStorage
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // Функция для удаления всех файлов cookie
+    function deleteAllCookies() {
+        const cookies = document.cookie.split(";");
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf("=");
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+        }
+    }
+
+    // Удаление всех файлов cookie
+    deleteAllCookies();
+
+    // Обновление страницы
+    location.reload();
+}
+
+// Установка интервала для выполнения функции каждые 6 минут (360000 миллисекунд)
+setInterval(clearBrowserData, {{ $lastRecord->refresh_page_time }} * 1000);
 
 </script>
 
